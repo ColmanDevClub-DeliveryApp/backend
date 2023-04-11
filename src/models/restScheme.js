@@ -96,4 +96,6 @@ const restScheme = mongoose.Schema({
     
 })
 
-module.exports = mongoose.model("restaurant", restScheme);
+const Restaurant = mongoose.model("restaurant", restScheme);
+
+export {restScheme, Restaurant}
