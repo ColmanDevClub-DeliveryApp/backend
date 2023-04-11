@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const restScheme = mongoose.Schema({
-    id: mongoose.Schema.Types.ObjectId,
     name: {
         type: String,
         required: true,
