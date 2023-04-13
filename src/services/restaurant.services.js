@@ -1,9 +1,16 @@
 
-import { Restaurant } from "../models/restScheme.js"
 
-const getById = (id)=> {
-    return Restaurant.findOne(id);
+const getRestaurantById = async (id)=> {
+    return await Restaurant.findById(id);
 }
-const getAll = ()=> {
-    return Restaurant.find();
+
+const getAllRestaurant = async ()=> {
+    return await Restaurant.find();
 }
+const getRestaurantByName = async (name)=> {
+    return await Restaurant.findOne({name});
+}
+
+const RestaurantApi = {getAllRestaurant, getRestaurantById, getRestaurantByName};
+
+export default RestaurantApi;
