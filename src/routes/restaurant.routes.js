@@ -25,3 +25,5 @@ router.get("/", async (req, res) => {
     `You requested restaurant ${await RestaurantApi.getAllRestaurant()}`
   );
 });
+
+export default router;
