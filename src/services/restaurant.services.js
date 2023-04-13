@@ -1,5 +1,5 @@
 
-import { Restaurant } from "../models/restScheme"
+import { Restaurant } from "../models/restScheme.js"
 
 const getById = (id)=> {
     return Restaurant.findOne(id);
