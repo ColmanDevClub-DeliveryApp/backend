@@ -68,9 +68,9 @@ const restScheme = mongoose.Schema({
         max: 20,
         default: 0
     },
-    orders: {
-        type: [{ref: 'order'}]
-    },
+    // orders: {
+    //     type: [{ref: 'order'}]
+    // },
     numberOfOrders: {
         type: Number,
         min: 0,
@@ -88,7 +88,7 @@ const restScheme = mongoose.Schema({
                 minLength: 2,
                 trim: true
             },
-            dishes: [{ref: 'dish'}]
+            // dishes: [{ref: 'dish'}]
         }],
         required: true
     }
