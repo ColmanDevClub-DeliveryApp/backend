@@ -1,4 +1,4 @@
-
+import { Restaurant } from "../models/restScheme.js"
 
 const getRestaurantById = async (id)=> {
     return await Restaurant.findById(id);
