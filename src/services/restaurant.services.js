@@ -1,4 +1,3 @@
-import {ObjectId} from "mongoose"
 import { Restaurant } from "../models/restScheme.js"
 
 const getRestaurantById = async (id)=> {
