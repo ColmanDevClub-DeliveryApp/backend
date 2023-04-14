@@ -11,10 +11,10 @@ router.get("/", async (req, res) => {
 
   if (id) {
     try{
-      const userID = await RestaurantApi.getRestaurantById(id);
-      if(userID){
+      const restaurant = await RestaurantApi.getRestaurantById(id);
+      if(restaurant.id){
         return res.send(
-          `You requested restaurant by ID: ${userID}`
+          `You requested restaurant by ID: ${restaurant}`
         );
       }
     }catch(e){
@@ -24,10 +24,10 @@ router.get("/", async (req, res) => {
 
   if (name) {
     try{
-      const restaurantName = await RestaurantApi.getRestaurantByName(name);
-      if(restaurantName.name){
+      const restaurant = await RestaurantApi.getRestaurantByName(name);
+      if(restaurant.name){
         return res.send(
-          `You requested restaurant by name: ${await RestaurantApi.getRestaurantByName(restaurantName.name)}`
+          `You requested restaurant by name: ${await RestaurantApi.getRestaurantByName(restaurant.name)}`
         );
       }
     }catch(e){
@@ -35,8 +35,10 @@ router.get("/", async (req, res) => {
     }
   }
 
+
+  const restaurants = await RestaurantApi.getAllRestaurant();
   res.send(
-    `You requested ${await RestaurantApi.getAllRestaurant()}`
+    `Restaurants: ${restaurants}`
   );
 });
 
