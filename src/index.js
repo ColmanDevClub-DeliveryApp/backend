@@ -20,6 +20,7 @@ app.use('/restaurants', restaurantRoutes);
 app.use('/category', categoryRoutes);
 app.use('*', notFoundRoutes);
 
+
 app.listen(PORT, ()=>{
     console.log(`Server listening on port ${PORT}`);
     mongoConnect();
