@@ -8,6 +8,7 @@ const router = express.Router();
  */
 router.get("/", async (req, res) => {
   const { id, name } = req.query;
+
   if (id) {
     try{
       const userID = await RestaurantApi.getRestaurantById(id);
@@ -17,10 +18,7 @@ router.get("/", async (req, res) => {
         );
       }
     }catch(e){
-      // here we need to send a 404 error
-      return res.send(
-        `You requested restaurant by ID, but it doesn't exist: ${id}`
-      );
+      return notFoundRoutes(req, res);
     }
   }
 
@@ -29,22 +27,17 @@ router.get("/", async (req, res) => {
       const restaurantName = await RestaurantApi.getRestaurantByName(name);
       if(restaurantName){
         return res.send(
-          `You requested restaurant by name: ${await RestaurantApi.getRestaurantByName(name)}`
+          `You requested restaurant by name: ${await RestaurantApi.getRestaurantByName(restaurantName)}`
         );
       }
     }catch(e){
-        // here we need to send a 404 error
-      return res.send(
-        `You requested restaurant by name, but it doesn't exist: ${name}`
-      );
+      return notFoundRoutes(req, res);
     }
   }
 
   res.send(
-    `You requested restaurant ${await RestaurantApi.getAllRestaurant()}`
+    `You requested ${await RestaurantApi.getAllRestaurant()}`
   );
 });
-
-router.get("*", notFoundRoutes);
 
 export default router;
