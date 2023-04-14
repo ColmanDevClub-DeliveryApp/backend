@@ -25,9 +25,9 @@ router.get("/", async (req, res) => {
   if (name) {
     try{
       const restaurantName = await RestaurantApi.getRestaurantByName(name);
-      if(restaurantName){
+      if(restaurantName.name){
         return res.send(
-          `You requested restaurant by name: ${await RestaurantApi.getRestaurantByName(restaurantName)}`
+          `You requested restaurant by name: ${await RestaurantApi.getRestaurantByName(restaurantName.name)}`
         );
       }
     }catch(e){
