@@ -45,6 +45,6 @@ router.get("/", async (req, res) => {
 // opening time + catalog dishes
 router.post("/", async (req, res) => {
   const { name, description, street, city, zip, phone, image} = req.body;
-
+  RestaurantApi.addRestaurant(name, description, street, city, zip, phone, image);
 });
 export default router;
