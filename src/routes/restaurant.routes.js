@@ -1,6 +1,7 @@
 import express from "express";
 import RestaurantApi from "../services/restaurant.services.js";
 import notFoundRoutes from "../routes/notFound.routes.js";
+import { Routes } from "react-router-dom";
 const router = express.Router();
 
 /**
@@ -27,7 +28,7 @@ router.get("/", async (req, res) => {
       const restaurant = await RestaurantApi.getRestaurantByName(name);
       if(restaurant.name){
         return res.send(
-          `You requested restaurant by name: ${await RestaurantApi.getRestaurantByName(restaurant.name)}`
+          `You requested restaurant by name: ${restaurant}`
         );
       }
     }catch(e){
@@ -41,5 +42,9 @@ router.get("/", async (req, res) => {
     `Restaurants: ${restaurants}`
   );
 });
+// opening time + catalog dishes
+router.post("/", async (req, res) => {
+  const { name, description, street, city, zip, phone, image} = req.body;
 
+});
 export default router;
