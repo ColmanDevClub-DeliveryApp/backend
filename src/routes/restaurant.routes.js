@@ -42,9 +42,17 @@ router.get("/", async (req, res) => {
     `Restaurants: ${restaurants}`
   );
 });
-// opening time + catalog dishes
+
 router.post("/", async (req, res) => {
   const { name, description, street, city, zip, phone, image} = req.body;
+  console.log(req.body);
   RestaurantApi.addRestaurant(name, description, street, city, zip, phone, image);
 });
+
+router.delete("/", async (req, res) => {
+  const {name} = req.body;
+  RestaurantApi.removeRestaurant(name);
+});
+
+
 export default router;
