@@ -48,6 +48,6 @@ const updateRestaurant = async (name, newName=name, desc, street, city, zip, pho
         openingHours})
 }
 
-const RestaurantApi = {getAllRestaurant, getRestaurantById, getRestaurantByName, addRestaurant, removeRestaurant};
+const RestaurantApi = {getAllRestaurant, getRestaurantById, getRestaurantByName, addRestaurant, removeRestaurant, updateRestaurant};
 
 export default RestaurantApi;
