@@ -5,7 +5,8 @@ const restScheme = mongoose.Schema({
         type: String,
         required: true,
         minLength: 2,
-        trim: true
+        trim: true,
+        unique: true
     },
     description: {
         type: String,

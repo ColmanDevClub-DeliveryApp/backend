@@ -29,7 +29,10 @@ const addRestaurant = async (name, desc, street, city, zip, phone, image) => {
     } catch (error) {
         console.log(error);
     }
-    
+}
+
+const removeRestaurant = async (name)=> {
+    await Restaurant.deleteOne({name});
 }
 
 const RestaurantApi = {getAllRestaurant, getRestaurantById, getRestaurantByName, addRestaurant};
