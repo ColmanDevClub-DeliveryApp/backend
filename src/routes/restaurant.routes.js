@@ -1,27 +1,22 @@
 import express from "express";
 import RestaurantApi from "../services/restaurant.services.js";
 import notFoundRoutes from "../routes/notFound.routes.js";
-import { Routes } from "react-router-dom";
 const router = express.Router();
+
+
+router.get("/", async (req, res) => {
+  const restaurants = await RestaurantApi.getAllRestaurant();
+  res.send(
+  `Restaurants: ${restaurants}`
+  );
+});
 
 /**
  * return the specified restaurant.
  */
-router.get("/", async (req, res) => {
-  const { id, name } = req.query;
-
-  if (id) {
-    try{
-      const restaurant = await RestaurantApi.getRestaurantById(id);
-      if(restaurant.id){
-        return res.send(
-          `You requested restaurant by ID: ${restaurant}`
-        );
-      }
-    }catch(e){
-      return notFoundRoutes(req, res);
-    }
-  }
+router.get("/:name", async (req, res) => {
+  const { name } = req.params;
+  console.log(name);
 
   if (name) {
     try{
@@ -35,14 +30,9 @@ router.get("/", async (req, res) => {
       return notFoundRoutes(req, res);
     }
   }
-
-
-  const restaurants = await RestaurantApi.getAllRestaurant();
-  res.send(
-    `Restaurants: ${restaurants}`
-  );
 });
 
+/* openingHours, orders, catalog -> Missing! */
 router.post("/", async (req, res) => {
   const { name, description, street, city, zip, phone, image} = req.body;
   console.log(req.body);
@@ -54,5 +44,10 @@ router.delete("/", async (req, res) => {
   RestaurantApi.removeRestaurant(name);
 });
 
+/* openingHours, orders, catalog -> Missing! */
+router.patch("/", async (req, res) => {
+  const {name, newName, description, street, city, zip, phone, image} = req.body;
+  RestaurantApi.updateRestaurant(name, newName, description, street, city, zip, phone, image);
+});
 
 export default router;
