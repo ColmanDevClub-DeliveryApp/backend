@@ -8,22 +8,24 @@ router.get('/', (req, res)=>{
 });
 
  
-/* don't remove this comment until we fix the problem with the ref in our Schema
-router.post('/signup', async (req, res)=>{
-    const {name, email, password, phone} = req.body;
-    const user = new User({
-        name,
-        email,
-        password,
-        phone
-    })
+//  don't remove this comment until we fix the problem with the ref in our Schema
 
-    try {
-        const newUser = await user.save();
-        res.send(newUser);
-    } catch (error) {
-        console.log(error);
-    }
-});
-*/
+// router.post('/signup', async (req, res)=>{
+//     const {firstName, lastName , email, password, phone} = req.body;
+//     const user = new User({
+//         firstName,
+//         lastName,
+//         email,
+//         password,
+//         phone
+//     })
+
+//     try {
+//         const newUser = await user.save();
+//         res.send(newUser);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// });
+
 export default router;
