@@ -9,24 +9,23 @@ router.get('/', (req, res)=>{
 
  
 //  don't remove this comment until we fix the problem with the ref in our Schema
+router.post('/signup', async (req, res)=>{
+    const {firstName, lastName , email, password, phone} = req.body;
+    const user = new User({
+        firstName,
+        lastName,
+        email,
+        password,
+        phone
+    })
 
-// router.post('/signup', async (req, res)=>{
-//     const {firstName, lastName , email, password, phone} = req.body;
-//     const user = new User({
-//         firstName,
-//         lastName,
-//         email,
-//         password,
-//         phone
-//     })
-
-//     try {
-//         const newUser = await user.save();
-//         res.send(newUser);
-//     } catch (error) {
-//         console.log(error);
-//     }
-// });
+    try {
+        const newUser = await user.save();
+        res.send(newUser);
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 router.post('/signin', async (req, res)=>{
     const {email, password} = req.body;
@@ -35,7 +34,7 @@ router.post('/signin', async (req, res)=>{
         if(user.password === password){
             res.send(user);
         }else{
-            res.send('Wrong password');
+            res.send('Wrong email or password');
         }
     }else{
         res.send('User not found');

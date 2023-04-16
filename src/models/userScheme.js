@@ -36,41 +36,41 @@ const userScheme = mongoose.Schema({
         type: String,
         trim: true
     },
-    // address: {
-    //     type: {
-    //         street: {
-    //         type: String,
-    //         required: true,
-    //         trim: true
-    //         },
-    //         city: {
-    //         type: String,
-    //         required: true,
-    //         trim: true
-    //         },
-    //         zip: {
-    //         type: String,
-    //         required: true,
-    //         trim: true
-    //         }
-    //     }
-    // },
-    // role: {
-    //     type: String,
-    //     enum: ['customer', 'restaurantAdmin'],
-    //     default: 'customer'
-    // },
-    // orders: {
-    //     type: [{ref:'order'}],
-    // },
-    // numOfOrders: {
-    //     type: Number,
-    //     min: 0,
-    //     default: 0
-    // },
-    // creditCardNumber: {
-    //     type: String
-    // }
+    address: {
+        type: {
+            street: {
+            type: String,
+            required: true,
+            trim: true
+            },
+            city: {
+            type: String,
+            required: true,
+            trim: true
+            },
+            zip: {
+            type: String,
+            required: true,
+            trim: true
+            }
+        }
+    },
+    role: {
+        type: String,
+        enum: ['customer', 'restaurantAdmin'],
+        default: 'customer'
+    },
+    orders: {
+        type: [{ref:'order'}],
+    },
+    numOfOrders: {
+        type: Number,
+        min: 0,
+        default: 0
+    },
+    creditCardNumber: {
+        type: String
+    }
 
 
 });
