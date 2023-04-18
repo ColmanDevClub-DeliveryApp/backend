@@ -60,9 +60,9 @@ const userScheme = mongoose.Schema({
         enum: ['customer', 'restaurantAdmin'],
         default: 'customer'
     },
-    orders: {
-        type: [{ref:'order'}],
-    },
+    // orders: {
+    //     type: [{ref:'order'}],
+    // },
     numOfOrders: {
         type: Number,
         min: 0,
