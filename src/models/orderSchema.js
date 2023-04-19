@@ -8,9 +8,9 @@ const orderSchema = mongoose.Schema({
     user:{
         ref: 'user',
     },
-    restaurant:[{
+    restaurant:{
         ref: 'restaurant',
-    }]
+    }
 });
 
 const Order = mongoose.model('order', orderSchema);
