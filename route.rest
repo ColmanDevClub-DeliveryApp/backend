@@ -68,11 +68,11 @@ POST http://localhost:8080/signup
 Content-Type: application/json
 
 {
-     "firstName": "bbbbb",
-     "lastName": "bbbbb",
-     "email": "bbbbb@gmail.com",
-     "password": "bbbbb",
-     "phone": "12345"
+     "firstName": "aaaa",
+     "lastName": "aaaa",
+     "email": "aaaa@gmail.com",
+     "password": "aaaa",
+     "phone": "123456"
 }
 
 ###
@@ -80,6 +80,6 @@ POST http://localhost:8080/signin/
 Content-Type: application/json
 
 {
-     "email": "bbbbb@gmail.com",
-     "password": "bbbbb"
+     "email": "aaaa@gmail.com",
+     "password": "aaaa"
 }

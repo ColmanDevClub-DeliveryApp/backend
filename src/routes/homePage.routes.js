@@ -31,7 +31,8 @@ router.get('/', (req, res)=>{
 
     try {
         const newUser = await user.save();
-        res.send(newUser);
+        const savedUser = await User.findById(newUser._id).select('-password');
+        res.send(savedUser);
     } catch (error) {
         res.status(404).send(error.message)
     }
