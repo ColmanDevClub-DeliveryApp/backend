@@ -14,20 +14,18 @@ router.get('/', (req, res)=>{
 
         res.send('Home Page');
     }catch(error){
-        console.log(error);
+        res.status(404).send(error.message)
     }
     
 });
 
- 
-//  don't remove this comment until we fix the problem with the ref in our Schema
-router.post('/signup', async (req, res)=>{
+ router.post('/signup', async (req, res)=>{
     const {firstName, lastName , email, password, phone} = req.body;
     const user = new User({
         firstName,
         lastName,
         email,
-        password,
+        password: jwt.sign({password}, process.env.PASSWORD_KEY),
         phone
     })
 
@@ -35,24 +33,11 @@ router.post('/signup', async (req, res)=>{
         const newUser = await user.save();
         res.send(newUser);
     } catch (error) {
-        console.log(error);
+        res.status(404).send(error.message)
     }
 });
 
 router.post('/signin', async (req, res)=>{
-    /*  ****** DONT REMOVE YET *********
-    const {email, password} = req.body;
-    const user = await User.findOne({email});
-    if(user){
-        if(user.password === password){
-            res.send(user);
-        }else{
-            res.send('Wrong email or password');
-        }
-    }else{
-        res.send('User not found');
-    }
-    */
     try{
         const {email, password} = req.body;
         if(!email || !password){
@@ -61,6 +46,10 @@ router.post('/signin', async (req, res)=>{
         const user = await User.findOne({email});
         if(!user){
             throw new Error("User not found")
+        }
+        const userPassowrd = jwt.verify(user.password, process.env.PASSWORD_KEY).password
+        if(userPassowrd !== password){
+            throw new Error("Wrong email or password")
         }
         const accessToken = jwt.sign({email}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "1h"})
         user.accessToken = accessToken;
