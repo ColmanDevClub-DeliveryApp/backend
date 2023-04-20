@@ -12,14 +12,17 @@ const getDishByName = async (name) => {
     return await Dish.findOne({name});
 }
 
-const addDish = async (name, desc, price, image, category, restaurant) => {
+const addDish = async (name, desc, price, amount, image, category, restaurant, order ) => {
     try {
         const dish = new Dish({
             name,
             description: desc, 
-            price, image, 
+            price,
+            amount,
+            image,
             category, 
-            restaurant
+            restaurant,
+            order
         });
         const newDish = await dish.save();
     } catch (error) {
@@ -31,13 +34,15 @@ const removeDish = async (name) => {
     await Dish.deleteOne({name});
 }
 
-const updateDish = async (name, newName=name, desc, price, image, category, restaurant) => {
+const updateDish = async (name, newName=name, desc, price, amount, image, category, restaurant, order) => {
     await Dish.findOneAndUpdate({name}, 
         {name:newName,
         description: desc,
         price, image,
+        amount,
         category,
-        restaurant
+        restaurant,
+        order
     })
 }
 
