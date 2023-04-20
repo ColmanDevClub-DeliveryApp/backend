@@ -17,6 +17,9 @@ const dishScheme = mongoose.Schema({
         type: Number,
         required: true,
     },
+    amount: {
+        type: Number,
+    },
     image: {
         type: String,
         trim: true
@@ -26,13 +29,15 @@ const dishScheme = mongoose.Schema({
         trim: true
     },
     restaurant: {
-        type: mongoose.Schema.Types.ObjectId,
         ref: "restaurant",
         required: true
+    },
+    orders: {
+        ref: "order",
     }
 });
 
 
-const Dish = mongoose.model("dish", restScheme);
+const Dish = mongoose.model("dish", dishScheme);
 
 export {dishScheme, Dish}
