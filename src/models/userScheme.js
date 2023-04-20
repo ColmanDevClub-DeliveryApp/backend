@@ -61,7 +61,7 @@ const userScheme = mongoose.Schema({
         default: 'customer'
     },
     orders: {
-        type: [{ref:'order'}],
+        type: [{type: mongoose.Schema.Types.ObjectId,ref:'order'}],
     },
     numOfOrders: {
         type: Number,

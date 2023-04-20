@@ -70,7 +70,7 @@ const restScheme = mongoose.Schema({
         default: 0
     },
     orders: {
-        type: [{ref: 'order'}]
+        type: [{type: mongoose.Schema.Types.ObjectId, ref: 'order'}]
     },
     numberOfOrders: {
         type: Number,
@@ -89,7 +89,7 @@ const restScheme = mongoose.Schema({
                 minLength: 2,
                 trim: true
             },
-            dishes: [{ref: 'dish'}]
+            dishes: [{type: mongoose.Schema.Types.ObjectId,ref: 'dish'}]
         }],
         required: true
     }

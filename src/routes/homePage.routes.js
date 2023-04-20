@@ -20,16 +20,15 @@ router.get('/', (req, res)=>{
 });
 
  router.post('/signup', async (req, res)=>{
-    const {firstName, lastName , email, password, phone} = req.body;
-    const user = new User({
-        firstName,
-        lastName,
-        email,
-        password: jwt.sign({password}, process.env.PASSWORD_KEY),
-        phone
-    })
-
     try {
+        const {firstName, lastName , email, password, phone} = req.body;
+        const user = new User({
+            firstName,
+            lastName,
+            email,
+            password: jwt.sign({password}, process.env.PASSWORD_KEY),
+            phone
+        })
         const newUser = await user.save();
         const savedUser = await User.findById(newUser._id).select('-password');
         res.send(savedUser);
