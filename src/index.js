@@ -7,7 +7,6 @@ import restaurantRoutes from './routes/restaurant.routes.js';
 import categoryRoutes from './routes/category.routes.js';
 import notFoundRoutes from './routes/notFound.routes.js';
 import homeRoutes from './routes/homePage.routes.js';
-import {Dish} from './models/dishScheme.js';
 
 dotenv.config();
 

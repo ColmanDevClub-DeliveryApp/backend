@@ -29,12 +29,10 @@ const dishScheme = mongoose.Schema({
         trim: true
     },
     restaurant: {
-        ref: "restaurant",
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'restaurant'
     },
-    orders: {
-        ref: "order",
-    }
+    order: {type: mongoose.Schema.Types.ObjectId,ref: 'dish'}
 });
 
 
