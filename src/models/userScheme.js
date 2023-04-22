@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const userScheme = mongoose.Schema({
-    id: mongoose.Schema.Types.ObjectId,
     firstName: {
         type: String,
         required: true,
@@ -61,7 +60,8 @@ const userScheme = mongoose.Schema({
         default: 'customer'
     },
     orders: {
-        type: [{ref:'order'}],
+        //type: [{ref:'order'}],
+        type: String
     },
     numOfOrders: {
         type: Number,
