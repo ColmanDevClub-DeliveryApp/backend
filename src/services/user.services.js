@@ -12,7 +12,7 @@ const getUserByEmail = async (email) => {
     return await User.findOne({email});
 }
 
-const addUser = async (firstName, lastName, email, password, profilePic, phoneNumber, address, role, orders, numOfOrders, creditCardNumber) =>{
+const addUser = async (firstName, lastName, email, password, profilePic, phoneNumber, address, role, creditCardNumber) =>{
     try{
         const user= new User({
             firstName,
@@ -23,8 +23,8 @@ const addUser = async (firstName, lastName, email, password, profilePic, phoneNu
             phoneNumber,
             address,
             role,
-            orders,
-            numOfOrders,
+            orders:[],
+            numOfOrders:0,
             creditCardNumber
         });
     }
@@ -34,8 +34,8 @@ const removeUser = async (email) => {
     await User.deleteOne({email});
 }
 
-const updateUser = async (firstName, lastName, email, newEmail, password, profilePic, phoneNumber, address, role, orders, numOfOrders, creditCardNumber) =>{
-    await User.findOneAndUpdate({email},
+const updateUser = async (firstName, lastName, oldEmail, newEmail, password, profilePic, phoneNumber, address, role, orders, numOfOrders, creditCardNumber) =>{
+    await User.findOneAndUpdate({email:oldEmail},
         {
             firstName,
             lastName,
