@@ -17,7 +17,7 @@ const addRestaurant = async (name, desc, street, city, zip, phone, image) => {
     const catalog = [{title: "catalog", subtitle: "catalog"}]
     const rest = new Restaurant ({
         name: name.toLowerCase(),
-        shownName: name,
+        shownName: name.charAt(0).toUpperCase(),
         description: desc, 
         address, 
         phone, 
