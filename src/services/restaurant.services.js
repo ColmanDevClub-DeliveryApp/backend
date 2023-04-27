@@ -1,4 +1,5 @@
 import { Restaurant } from "../models/restScheme.js"
+import {toTitleCase} from "../utils/util.js"
 
 const getRestaurantById = async (id)=> {
     return await Restaurant.findById(id);
@@ -17,7 +18,7 @@ const addRestaurant = async (name, desc, street, city, zip, phone, image) => {
     const catalog = [{title: "catalog", subtitle: "catalog"}]
     const rest = new Restaurant ({
         name: name.toLowerCase(),
-        shownName: name.charAt(0).toUpperCase(),
+        shownName: toTitleCase(name),
         description: desc, 
         address, 
         phone, 
