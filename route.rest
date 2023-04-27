@@ -83,3 +83,23 @@ Content-Type: application/json
      "email": "bar@gmail.com",
      "password": "bar"
 }
+
+###
+POST http://localhost:8080/restaurants
+Content-Type: application/json
+
+{
+     "name": "Shay",
+     "city": "Shay",
+     "street": "Shay",
+     "zip": "Shay",
+     "phone": 123456,
+     "description": "Shay",
+     "image": "bar",
+     "openingHours": [{
+          "day": "Sunday","hours":"12:00-12:00"
+     }],
+     "catalog": [{}]
+
+
+}

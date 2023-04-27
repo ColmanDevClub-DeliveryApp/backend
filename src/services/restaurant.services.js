@@ -16,7 +16,8 @@ const addRestaurant = async (name, desc, street, city, zip, phone, image) => {
     const openingHours = [{day: "a", hours: "1200-1600"},{day: "b", hours: "1200-1600"}]
     const catalog = [{title: "catalog", subtitle: "catalog"}]
     const rest = new Restaurant ({
-        name, 
+        name: name.toLowerCase(),
+        shownName: name,
         description: desc, 
         address, 
         phone, 

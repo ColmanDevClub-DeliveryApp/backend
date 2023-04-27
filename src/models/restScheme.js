@@ -8,6 +8,9 @@ const restScheme = mongoose.Schema({
         trim: true,
         unique: true
     },
+    shownName: {
+        type: String,
+    },
     description: {
         type: String,
         minLength: 2,
