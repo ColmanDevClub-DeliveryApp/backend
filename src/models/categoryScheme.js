@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const catalogScheme = mongoose.Schema({
+const categoryScheme = mongoose.Schema({
         title: {
             type: String,
             required: true,
@@ -18,5 +18,5 @@ const catalogScheme = mongoose.Schema({
         },
 });
 
-const Catalog = mongoose.model("catalog", catalogScheme);
-export {catalogScheme, Catalog}
+const CategoryScheme = mongoose.model("categories", categoryScheme);
+export {CategoryScheme, categoryScheme}

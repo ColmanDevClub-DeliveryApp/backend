@@ -1,12 +1,12 @@
-import {catalogScheme} from "../models/catalogScheme.js";
+import {CategoryScheme} from "../models/categoryScheme.js";
 
 const getAllCategories = async () => {
-    return await catalogScheme.find();
+    return await CategoryScheme.find();
 }
 
 const getCategoryByName = async (name) => {
-    return await catalogScheme.findById(name);
+    return await CategoryScheme.findById(name);
 }
 
-const CatalogApi = {getAllCategories, getCategoryByName};
-export default CatalogApi;
+const CategoryApi = {getAllCategories, getCategoryByName};
+export default CategoryApi;
