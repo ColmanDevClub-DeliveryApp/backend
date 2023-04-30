@@ -105,4 +105,9 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/dishes/Pizzaa
+DELETE http://localhost:8080/restaurants
+Content-Type: application/json
+
+{
+     "name": "bar"
+}
