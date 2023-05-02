@@ -1,4 +1,4 @@
-import {User} from '../models/userScheme'
+import {User} from '../models/userScheme.js'
 
 const getAllUsers = async () => {
     return await User.find();
@@ -10,6 +10,10 @@ const getUserById = async (id) => {
 
 const getUserByEmail = async (email) => {
     return await User.findOne({email});
+}
+
+const getUserByName = async (name) =>{
+    return await User.findOne({name});
 }
 
 const addUser = async (firstName, lastName, email, password, profilePic, phoneNumber, address, role, orders, numOfOrders, creditCardNumber) =>{
@@ -27,6 +31,9 @@ const addUser = async (firstName, lastName, email, password, profilePic, phoneNu
             numOfOrders,
             creditCardNumber
         });
+        await user.save();
+    }catch(e){
+        console.log(e);
     }
 }
 
@@ -52,6 +59,6 @@ const updateUser = async (firstName, lastName, email, newEmail, password, profil
         })
 }
 
-const UserApi = {getAllUsers, getUserById, getUserByEmail, addUser, removeUser, updateUser};
+const UserApi = {getUserByName, getAllUsers, getUserById, getUserByEmail, addUser, removeUser, updateUser};
 
 export default UserApi;

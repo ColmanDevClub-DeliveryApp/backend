@@ -111,3 +111,27 @@ Content-Type: application/json
 {
      "name": "bar"
 }
+
+###
+GET http://localhost:8080/users/test
+
+###
+POST http://localhost:8080/auth/signup
+Content-Type: application/json
+
+{
+     "firstName": "Alon",
+     "lastName": "Quzzaa",
+     "email": "alon@walla.com",
+     "password": 123456,
+     "phone": "123456789"
+}
+
+###
+POST http://localhost:8080/auth/signin
+Content-Type: application/json
+
+{
+     "email": "alon@walla.com",
+     "password": 123456
+}
