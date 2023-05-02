@@ -7,6 +7,7 @@ import restaurantRoutes from './routes/restaurant.routes.js';
 import categoryRoutes from './routes/category.routes.js';
 import notFoundRoutes from './routes/notFound.routes.js';
 import homeRoutes from './routes/homePage.routes.js';
+import RestaurantApi from "./services/restaurant.services.js"; 
 
 dotenv.config();
 
@@ -19,6 +20,8 @@ app.use('/dishes', dishesRoutes);
 app.use('/restaurants', restaurantRoutes);
 app.use('/category', categoryRoutes);
 app.use('*', notFoundRoutes);
+
+RestaurantApi.updateRestaurant("Tal", "McDonalds", "Fast food", "street", "city", "zip", 123456, "image");
 
 
 

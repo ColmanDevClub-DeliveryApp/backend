@@ -15,7 +15,7 @@ const getRestaurantByName = async (name)=> {
 const addRestaurant = async (name, desc, street, city, zip, phone, image) => {
     const address = {street, city, zip};
     const openingHours = [{day: "a", hours: "1200-1600"},{day: "b", hours: "1200-1600"}]
-    const catalog = [{title: "catalog", subtitle: "catalog"}]
+    const category = [{title: "category", subtitle: "category"}]
     const rest = new Restaurant ({
         name: name.toLowerCase(),
         shownName: toTitleCase(name),
@@ -23,7 +23,7 @@ const addRestaurant = async (name, desc, street, city, zip, phone, image) => {
         address, 
         phone, 
         image, 
-        catalog, 
+        category: category, 
         openingHours
     })
     try {
@@ -40,13 +40,13 @@ const removeRestaurant = async (name)=> {
 const updateRestaurant = async (name, newName=name, desc, street, city, zip, phone, image) =>{
     const address = {street, city, zip};
     const openingHours = [{day: "a", hours: "1200-1600"},{day: "b", hours: "1200-1600"}]
-    const catalog = [{title: "catalog", subtitle: "catalog"}]
+    const category = [{title: "category", subtitle: "category"}]
     await Restaurant.findOneAndUpdate({name}, {name:newName, 
         description: desc, 
         address, 
         phone, 
         image, 
-        catalog, 
+        category, 
         openingHours})
 }
 

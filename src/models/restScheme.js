@@ -80,7 +80,7 @@ const restScheme = mongoose.Schema({
         min: 0,
         default: 0
     },
-    catalog: {
+    category: {
         type: [{
             title: {
                 type: String,
