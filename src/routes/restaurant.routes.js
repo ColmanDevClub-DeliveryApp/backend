@@ -1,7 +1,7 @@
 import express from "express";
 import RestaurantApi from "../services/restaurant.services.js";
 import notFoundRoutes from "../routes/notFound.routes.js";
-import RestaurantController from "../contollers/restaurant.controller.js";
+import RestaurantController from "../controllers/restaurant.controller.js";
 const router = express.Router();
 
 /**
@@ -21,10 +21,12 @@ router.get("/:name", async (req, res) => {
   if (name) {
     try{
       const restaurant = await RestaurantApi.getRestaurantByName(name);
+      
       if(restaurant.name){
         return res.send({restaurant});
       }
     }catch(e){
+      console.log(e);
       return notFoundRoutes(req, res);
     }
   }

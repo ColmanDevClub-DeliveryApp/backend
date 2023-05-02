@@ -8,11 +8,13 @@ import categoryRoutes from './routes/category.routes.js';
 import notFoundRoutes from './routes/notFound.routes.js';
 import homeRoutes from './routes/homePage.routes.js';
 import RestaurantApi from "./services/restaurant.services.js"; 
+import cors from 'cors'
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.use(cors())
 const PORT = 8080;
 
 app.use('/', homeRoutes);

@@ -9,7 +9,7 @@ const getAllRestaurant = async ()=> {
     return await Restaurant.find();
 }
 const getRestaurantByName = async (name)=> {
-    return await Restaurant.findOne({name}).populate("orders").populate("category.dishes");
+    return await Restaurant.findOne({name}).populate('category.dishes');
 }
 
 const addRestaurant = async (restaurant) => {
