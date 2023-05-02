@@ -9,25 +9,12 @@ const getAllRestaurant = async ()=> {
     return await Restaurant.find();
 }
 const getRestaurantByName = async (name)=> {
-    return await Restaurant.findOne({name});
+    return await Restaurant.findOne({name}).populate("orders").populate("category.dishes");
 }
 
-const addRestaurant = async (name, desc, street, city, zip, phone, image) => {
-    const address = {street, city, zip};
-    const openingHours = [{day: "a", hours: "1200-1600"},{day: "b", hours: "1200-1600"}]
-    const category = [{title: "category", subtitle: "category"}]
-    const rest = new Restaurant ({
-        name: name.toLowerCase(),
-        shownName: toTitleCase(name),
-        description: desc, 
-        address, 
-        phone, 
-        image, 
-        category: category, 
-        openingHours
-    })
+const addRestaurant = async (restaurant) => {
     try {
-        const newRest = await rest.save();   
+        const newRest = await restaurant.save();   
     } catch (error) {
         console.log(error);
     }

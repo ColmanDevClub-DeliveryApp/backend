@@ -1,6 +1,7 @@
 import express from "express";
 import RestaurantApi from "../services/restaurant.services.js";
 import notFoundRoutes from "../routes/notFound.routes.js";
+import RestaurantController from "../contollers/restaurant.controller.js";
 const router = express.Router();
 
 /**
@@ -31,9 +32,7 @@ router.get("/:name", async (req, res) => {
 
 /* openingHours, orders, catalog -> Missing! */
 router.post("/", async (req, res) => {
-  const { name, description, street, city, zip, phone, image} = req.body;
-  console.log(req.body);
-  RestaurantApi.addRestaurant(name, description, street, city, zip, phone, image);
+  RestaurantController.addRestaurant(req);
 });
 
 /**

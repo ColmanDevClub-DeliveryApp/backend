@@ -111,3 +111,37 @@ Content-Type: application/json
 {
      "name": "bar"
 }
+
+
+###
+POST http://localhost:8080/restaurants
+Content-Type: application/json
+
+{
+     "name": "McDonalds",
+     "shownName": "מקדונלד'ס",
+     "street": "אבן גבירול 20", 
+     "city": "תל אביב",
+     "zip": "123456", 
+     "phone": 123456789,
+     "openingHours": [{
+          "day": "א'-ה'","hours":"12:00-12:00"
+     },
+     {
+          "day": "ו'","hours":"12:00-12:00"
+     },
+     {
+          "day": "ש'","hours":"12:00-12:00"
+     }],
+     "image": "https://images-ext-2.discordapp.net/external/-z9-zqkDTPPv9-Lbm5tjzzWypgHtjIBxqP8ODWrcbGo/https/www.denia.com/wp-content/uploads/2015/10/McDonalds.jpg",
+     "deliveryTime": 15,
+     "deliveryCose": 30,
+     "category" : [
+        {"title": "ארוחות", "subtitle": "", "dishes": []},
+        {"title": "מוצרים בודדים", "subtitle": "", "dishes": []},
+        {"title": "קינוחים", "subtitle": "", "dishes": []},
+        {"title": "שתייה קלה", "subtitle": "", "dishes": []},
+        {"title": "תוספות", "subtitle": "", "dishes": []},
+        {"title": "נאגטסים", "subtitle": "במיוחד לאלון", "dishes": []}
+    ]
+}
