@@ -35,6 +35,10 @@ function addRestaurant(req){
    RestaurantApi.addRestaurant(restaurant);
 }
 
-const RestaurantController = {addRestaurant};
+function removeRestaurant(name){
+    RestaurantApi.removeRestaurant(name);
+}
+
+const RestaurantController = {addRestaurant, removeRestaurant};
 
 export default RestaurantController;
