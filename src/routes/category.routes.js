@@ -19,4 +19,37 @@ router.get('/',  (req, res)=>{
     res.send(CategoryApi.getAllCategories());
 });
 
+/**
+ * Get category by name
+ * params/body: title = the category title (unique)
+ */
+router.get('/:title',  (req, res)=>{
+    //todo: connect to controller
+});
+
+
+/**
+ * Add restaurant to catalog
+ * params/body: {categoryName (unique), restaurantID}
+ */
+router.post('/add-rest', (req,res)=> {
+    //todo: connect to controller
+})
+
+/**
+ * Remove restaurant From catalog
+ * params/body: {categoryName (unique), restaurantID}
+ */
+router.delete('/remove-rest', (req,res)=> {
+    //todo: connect to controller
+})
+
+/**
+ * Update category
+ * params/body: {categoryName (unique), subtitle, restaurant (Array - DONT CHANGE)}
+ */
+router.put('/', (req, res)=> {
+    //todo: connect to controller
+})
+
 export default router;
