@@ -28,7 +28,7 @@ router.get('/:title', async (req, res)=>{
 
 /**
  * Add restaurant to catalog
- * params/body: {categoryName (unique), restaurantID}
+ * params/body: {title (unique), restaurantID}
  */
 router.post('/add-rest', (req,res)=> {
     res.send(CategoryController.addRestaurantToCatalog(req))

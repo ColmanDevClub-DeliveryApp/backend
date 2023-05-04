@@ -23,7 +23,6 @@ async function removeRestaurantFromCatalog(req) {
     const catalog = await CategoryApi.getCategoryByTitle(title)
     if(catalog){
         catalog.restaurants = catalog.restaurants.filter(item=> item!=id)
-        console.log(catalog);
         CategoryApi.updateCategory(catalog);
     }
     else{
