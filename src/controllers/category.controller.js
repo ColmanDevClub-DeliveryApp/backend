@@ -6,13 +6,27 @@ async function addRestaurantToCatalog(req){
     const catalog = await CategoryApi.getCategoryByTitle(title)
     console.log(catalog);
     if(catalog){
-        if(catalog.restaurants.filter(item=> item == id)){
+        if(catalog.restaurants.filter(item=> item == id).length > 0){
             console.log('rest already in this catalog');
             return
         }
         catalog.restaurants.push(id)
         CategoryApi.updateCategory(catalog);
     }else {
+        console.log('Dont find any catalog by this name');
+        //todo: return error message to frontend
+    }
+}
+
+async function removeRestaurantFromCatalog(req) {
+    const { title, id } = req.body;
+    const catalog = await CategoryApi.getCategoryByTitle(title)
+    if(catalog){
+        catalog.restaurants = catalog.restaurants.filter(item=> item!=id)
+        console.log(catalog);
+        CategoryApi.updateCategory(catalog);
+    }
+    else{
         console.log('Dont find any catalog by this name');
         //todo: return error message to frontend
     }
@@ -27,6 +41,6 @@ function addCatalog(req) {
     CategoryApi.addCatalog(catalog)
 }
 
-const CategoryController = {addRestaurantToCatalog, addCatalog};
+const CategoryController = {addRestaurantToCatalog, addCatalog, removeRestaurantFromCatalog};
 
 export default CategoryController;

@@ -21,3 +21,12 @@ Content-Type: application/json
     "title": "בשרים",
     "subtitle": "כשר"
 }
+
+###
+DELETE http://localhost:8080/category/remove-rest
+Content-Type: application/json
+
+{
+    "title": "בשרים",
+    "id": "64515a9072e6bfe71dde7419"
+}

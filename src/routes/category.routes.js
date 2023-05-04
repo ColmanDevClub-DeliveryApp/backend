@@ -49,7 +49,7 @@ router.post('/add-rest', (req,res)=> {
  * params/body: {categoryName (unique), restaurantID}
  */
 router.delete('/remove-rest', (req,res)=> {
-    //todo: connect to controller
+    res.send(CategoryController.removeRestaurantFromCatalog(req))
 })
 
 /**

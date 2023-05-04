@@ -17,8 +17,6 @@ const getCategoryByTitle = async (title) => {
 }
 
 const updateCategory = async (category)=> {
-    console.log(`updateCategory: ${category.title}, ${category.subtitle}`);
-    // const categoryInDB = getCategoryByName(category.title)
     return await Category.findOneAndUpdate(category.title, category)
 }
 
