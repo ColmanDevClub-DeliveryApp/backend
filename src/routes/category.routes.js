@@ -4,16 +4,6 @@ import CategoryApi from "../services/category.services.js";
 const router = express.Router();
 
 /**
- * return list of the shops in the category.
- */
-
-//TODO check if this category is valid in the DB if not return 404
-router.get('/:category', (req, res)=>{
-    const {category} = req.params;
-    res.send(CategoryApi.getCategoryByName(category));
-});
-
-/**
  * return list of all categories.
  */
 router.get('/',  async(req, res)=>{
@@ -24,8 +14,8 @@ router.get('/',  async(req, res)=>{
  * Get category by name
  * params/body: title = the category title (unique)
  */
-router.get('/:title',  (req, res)=>{
-    //todo: connect to controller
+router.get('/:title', async (req, res)=>{
+    res.send(await CategoryApi.getCategoryByTitle(req.params.title))
 });
 
 /**
