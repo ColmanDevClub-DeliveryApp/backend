@@ -16,9 +16,13 @@ const getCategoryByTitle = async (title) => {
     return await Category.findOne({title});
 }
 
+const getCategoryById = async (id) => {
+    return await Category.findById(id)
+}
+
 const updateCategory = async (category)=> {
     return await Category.findOneAndUpdate(category.title, category)
 }
 
-const CategoryApi = {getAllCategories, getCategoryByTitle, updateCategory, addCatalog};
+const CategoryApi = {getAllCategories, getCategoryByTitle, updateCategory, addCatalog, getCategoryById};
 export default CategoryApi;

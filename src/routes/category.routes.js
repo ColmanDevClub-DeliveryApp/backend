@@ -22,9 +22,7 @@ router.get('/:title', async (req, res)=>{
  * Add new catalog
  * params/body: {categoryName (unique), catalog subtitle}
  */
- router.post('/', (req,res)=> {
-    res.send(CategoryController.addCatalog(req))
-})
+ router.post('/', CategoryController.addCatalog)
 
 /**
  * Add restaurant to catalog
@@ -32,15 +30,13 @@ router.get('/:title', async (req, res)=>{
  */
 router.post('/add-rest', (req,res)=> {
     res.send(CategoryController.addRestaurantToCatalog(req))
-})
+})  //todo: remove add do it in rest-routes
 
 /**
  * Remove restaurant From catalog
  * params/body: {categoryName (unique), restaurantID}
  */
-router.delete('/remove-rest', (req,res)=> {
-    res.send(CategoryController.removeRestaurantFromCatalog(req))
-})
+router.delete('/remove-rest', CategoryController.removeRestaurantFromCatalog)
 
 /**
  * Update category

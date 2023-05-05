@@ -1,7 +1,7 @@
 import { Category } from "../models/categoryScheme.js";
 import CategoryApi from "../services/category.services.js";
 
-async function addRestaurantToCatalog(req){
+async function addRestaurantToCatalog(req, res, next){
     const { title, id } = req.body;
     const catalog = await CategoryApi.getCategoryByTitle(title)
     console.log(catalog);
@@ -18,25 +18,24 @@ async function addRestaurantToCatalog(req){
     }
 }
 
-async function removeRestaurantFromCatalog(req) {
+async function removeRestaurantFromCatalog(req, res, next) {
     const { title, id } = req.body;
     const catalog = await CategoryApi.getCategoryByTitle(title)
     if(catalog){
         catalog.restaurants = catalog.restaurants.filter(item=> item!=id)
         CategoryApi.updateCategory(catalog);
+        res.status(200).send(`Restaurant ${id} removed from catalog ${title}`)
     }
     else{
-        console.log('Dont find any catalog by this name');
         //todo: return error message to frontend
+        res.status(400).send(`Dont find any catalog by this name`)
     }
 }
 
-function addCatalog(req) {
+function addCatalog(req, res, next) {
     const {title, subtitle} = req.body;
-    console.log(title, subtitle);
     const restaurant = []
     const catalog = new Category({title, subtitle, restaurant})
-    console.log(catalog);
     CategoryApi.addCatalog(catalog)
 }
 

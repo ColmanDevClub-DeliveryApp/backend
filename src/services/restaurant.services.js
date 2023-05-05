@@ -14,7 +14,8 @@ const getRestaurantByName = async (name)=> {
 
 const addRestaurant = async (restaurant) => {
     try {
-        const newRest = await restaurant.save();   
+        const newRest = await restaurant.save();
+        return newRest._id
     } catch (error) {
         console.log(error);
     }

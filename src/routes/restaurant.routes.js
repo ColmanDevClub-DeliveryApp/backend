@@ -32,10 +32,7 @@ router.get("/:name", async (req, res) => {
   }
 });
 
-/* openingHours, orders, catalog -> Missing! */
-router.post("/", async (req, res) => {
-  RestaurantController.addRestaurant(req);
-});
+router.post("/", RestaurantController.addRestaurant);
 
 /**
  * delete the specified restaurant.
