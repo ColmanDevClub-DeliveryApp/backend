@@ -25,7 +25,7 @@ async function addRestaurant(req, res, next){
     // const rest = new Restaurant({...restaurant})
     const restaurant_id = await RestaurantApi.addRestaurant(rest)
     // console.log(typeof(restaurant_id));
-    if(!restaurant_id===null){
+    if(!restaurant_id){
         res.status(400).send(`Error, restaurant didnt created`)
     }else{
         const category = await CategoryApi.getCategoryById(catalog_id)
