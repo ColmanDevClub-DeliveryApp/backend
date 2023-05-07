@@ -98,13 +98,6 @@ const remove = (req, res) => {
     }
 }
 
-
-
-
-
-
-
-
 // const CategoryApi = {getAllCategories, getCategoryByTitle, updateCategory, addCatalog, getCategoryById};
 const CategoryApi = {add, getAll, getById, getByName, remove, update};
 export default CategoryApi;
