@@ -38,6 +38,12 @@ import { Restaurant } from "../models/restScheme.js"
 
 // const RestaurantApi = {getAllRestaurant, getRestaurantById, getRestaurantByName, addRestaurant, removeRestaurant, updateRestaurant};
 
+
+/**
+ * 
+ * @param {*} Parameters | restaurant object
+ * @returns | return new restaurant
+ */
 const add = async (restaurant) => {
     try{
         const newRestaurant = await restaurant.save();
@@ -49,6 +55,11 @@ const add = async (restaurant) => {
     }
 }
 
+/**
+ * 
+ * @param {*} Parameters | restaurant id
+ * @returns | return restaurant
+ */
 const getById = async (id) => {
     try{
         const restaurant = Restaurant.findById(id);
@@ -60,6 +71,11 @@ const getById = async (id) => {
     }
 }
 
+/**
+ * 
+ * @param {*} Parameters | restaurant name
+ * @returns | return restaurant
+ */
 const getByName = async (name)=>{
     try{
         const restaurant = await Restaurant.findOne({name})
@@ -71,6 +87,10 @@ const getByName = async (name)=>{
     }
 }
 
+/**
+ * 
+ * @returns |  return all restaurants
+ */
 const getAll = async ()=>{
     try{
         const restaurants = await Restaurant.find();
@@ -82,6 +102,11 @@ const getAll = async ()=>{
     }
 }
 
+/**
+ * 
+ * @param {*} Parameters | restaurant id, restaurant object
+ * @returns | return updated restaurant
+ */
 const update = async (id, restaurant)=>{
     try{
         const updateRestaurant = await Restaurant.findByIdAndUpdate(id, restaurant);
@@ -93,6 +118,10 @@ const update = async (id, restaurant)=>{
     }
 }
 
+/**
+ * 
+ * @param {*} Parameters | restaurant id
+ */
 const remove = async (id)=>{
     try{
         Restaurant.remove({_id: id});
