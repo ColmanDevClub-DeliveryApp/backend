@@ -1,37 +1,11 @@
 import {Category} from "../models/categoryScheme.js";
 
-const addCatalog = async (catalog)=> {
-    try {
-        await catalog.save()
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-const getAllCategories = async () => {
-    return await Category.find();
-}
-
-const getCategoryByTitle = async (title) => {
-    return await Category.findOne({title});
-}
-
-const getCategoryById = async (id) => {
-    return await Category.findById(id)
-}
-
-const updateCategory = async (category)=> {
-    return await Category.findOneAndUpdate(category.title, category)
-}
-
 /**
- * @param {*} req -> include {catlog: new Category}
- * @param {*} res 
- * @returns 
+ * @param {*} catalog type Category | catalog that will be added to database
+ * @returns type String | id of added catalog
  */
-const add = async (req, res) => {
+const add = async (catalog) => {
     try {
-        const {catalog} = req.body
         const DB_catalog = await catalog.save()
         if(DB_catalog){
             res.status(200)
@@ -43,8 +17,11 @@ const add = async (req, res) => {
     }
 }
 
-const getById = async (req, res) => {
-    const {id} = req.body
+/**
+ * @param {*} id type String | id of catalog that will be returned
+ * @returns type Category | catalog from database
+ */
+const getById = async (id) => {
     const catalog = await Category.findById(id)
     if(catalog) {
         res.status(200)
@@ -54,9 +31,13 @@ const getById = async (req, res) => {
     res.status(400)
 }
 
-const getByName = async (req, res) => {
-    const {name} = req.body
-    const catalog = await Category.findOne({name})
+
+/**
+ * @param {*} title type String | title of catalog that will be returned
+ * @returns type Category | catalog from database
+ */
+const getByTitle = async (title) => {
+    const catalog = await Category.findOne({title})
     if(catalog) {
         res.status(200)
         return catalog;
@@ -65,7 +46,10 @@ const getByName = async (req, res) => {
     res.status(400)
 }
 
-const getAll = async (req, res) => {
+/**
+ * @returns type Array | all catalogs from database
+ */
+const getAll = async () => {
     const catalogs = await Category.find()
     if(catalogs) {
         res.status(200)
@@ -75,10 +59,14 @@ const getAll = async (req, res) => {
     res.status(400)
 }
 
-const update = (req, res) => {
+/**
+ * @param {*} id type String | id of catalog that will be updated
+ * @param {*} catalog type Category | new catalog
+ * @returns type String | id of updated catalog
+ */
+const update = (id, catalog) => {
     try {
-        const {id, catalog} = req.body
-        const updatedCatalog = Category.findOneAndUpdate(_id == id, catalog);
+        const updatedCatalog = Category.findOneAndUpdate(id, catalog);
         res.status(200)
         return updatedCatalog._id
     } catch (error) {
@@ -87,9 +75,11 @@ const update = (req, res) => {
     }
 }
 
-const remove = (req, res) => {
+/**
+ * @param {*} id type String | id of catalog that will be deleted
+ */
+const removeById = (id) => {
     try {
-        const {id} = req.body
         Category.deleteOne(_id == id)
         res.status(200)
     } catch (error) {
@@ -99,5 +89,5 @@ const remove = (req, res) => {
 }
 
 // const CategoryApi = {getAllCategories, getCategoryByTitle, updateCategory, addCatalog, getCategoryById};
-const CategoryApi = {add, getAll, getById, getByName, remove, update};
+const CategoryApi = {add, getAll, getById, getByTitle, removeById, update};
 export default CategoryApi;
