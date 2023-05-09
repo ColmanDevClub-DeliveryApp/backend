@@ -41,7 +41,7 @@ import { Restaurant } from "../models/restScheme.js"
 
 /**
  * 
- * @param {*} Parameters | restaurant object
+ * @param {*} restaurant | restaurant object
  * @returns | return new restaurant
  */
 const add = async (restaurant) => {
@@ -71,7 +71,7 @@ const getById = async (id) => {
 }
 
 /**
- * @param {*} Parameters type String | restaurant name
+ * @param {*} name type String | restaurant name
  * @returns | return restaurant
  */
 const getByName = async (name)=>{
@@ -86,7 +86,7 @@ const getByName = async (name)=>{
 }
 
 /**
- * @returns |  return all restaurants
+ * @returns type Array | array of restaurants
  */
 const getAll = async ()=>{
     try{
@@ -100,8 +100,8 @@ const getAll = async ()=>{
 }
 
 /**
- * @param {*} Parameters type String | restaurant id, restaurant object
- * @returns | return updated restaurant
+    @param {} id type String | the id of the restaurant that will be change
+    @param {} restaurant type String | the id of the updated restaurant
  */
 const update = async (id, restaurant)=>{
     try{
@@ -115,7 +115,7 @@ const update = async (id, restaurant)=>{
 }
 
 /**
- * @param {*} Parameters type String | restaurant id
+ * @param {*} id type String | restaurant id
  */
 const removeById = async (id)=>{
     try{
