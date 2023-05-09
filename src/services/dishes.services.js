@@ -1,51 +1,80 @@
 import { Dish } from "../models/dishScheme.js"
 
-const getAllDishes = async () => {
-    return await Dish.find();
-}
-
-const getDishById = async (id) => {
-    return await Dish.findById(id);
-}
-
-const getDishByName = async (name) => {
-    return await Dish.findOne({name});
-}
-
-const addDish = async (name, desc, price, amount, image, category, restaurant, order ) => {
+/**
+ * @param {*} dish type Dish | dish that will be added to database
+ * @returns type String | id of added dish
+ */
+const add = async (dish) => {
     try {
-        const dish = new Dish({
-            name,
-            description: desc, 
-            price,
-            amount,
-            image,
-            category, 
-            restaurant,
-            order
-        });
-        const newDish = await dish.save();
+        const DB_dish = await dish.save()
+        if(DB_dish){
+            return DB_dish._id
+        }    
     } catch (error) {
         console.log(error);
     }
 }
 
-const removeDish = async (name) => {
-    await Dish.deleteOne({name});
+/**
+ * @param {*} id type String | id of catalog that will be returned
+ * @returns type Dish | dish from database
+ */
+const getById = async (id) => {
+    const dish = await Dish.findById(id)
+    if(dish) {
+        return dish;
+    }
+    console.log(error);
 }
 
-const updateDish = async (name, newName=name, desc, price, amount, image, category, restaurant, order) => {
-    await Dish.findOneAndUpdate({name}, 
-        {name:newName,
-        description: desc,
-        price, image,
-        amount,
-        category,
-        restaurant,
-        order
-    })
+/**
+ * @param {*} name type String | name of dish that will be returned
+ * @returns type Dish | dish from database
+ */
+const getByName = async (name) => {
+    const dish = await Dish.findOne({name})
+    if(dish) {
+        return dish;
+    }
+    console.log(error);
 }
 
-const DishApi = {getAllDishes, getDishById, getDishByName, addDish, removeDish, updateDish};
+/**
+ * @returns type Array | all dishes from database
+ */
+const getAll = async () => {
+    const dishes = await Dish.find()
+    if(dishes) {
+        return dishes
+    }
+    console.log(error);
+}
+
+/**
+ * @param {*} id type String | id of dish that will be updated
+ * @param {*} catalog type Dish | dish that will be updated
+ * @returns type String | id of updated dish
+ */
+const update = (id, dish) => {
+    try {
+        const updatedDish = Dish.findByIdAndUpdate(id, dish);
+        return updatedDish._id
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+/**
+ * @param {*} id type String | id of dish that will be deleted
+ */
+const removeById = (id) => {
+    try {
+        Dish.deleteOne(_id == id)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const DishApi = {add, getAll, getById, getByName, removeById, update};
 
 export default DishApi;
