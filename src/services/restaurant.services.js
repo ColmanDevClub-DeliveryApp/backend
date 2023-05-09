@@ -41,7 +41,7 @@ import { Restaurant } from "../models/restScheme.js"
 
 /**
  * 
- * @param {*} restaurant | restaurant object
+ * @param {*} restaurant type Restaurant | restaurant object
  * @returns | return new restaurant
  */
 const add = async (restaurant) => {
