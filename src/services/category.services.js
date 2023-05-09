@@ -8,12 +8,10 @@ const add = async (catalog) => {
     try {
         const DB_catalog = await catalog.save()
         if(DB_catalog){
-            res.status(200)
             return DB_catalog._id
         }    
     } catch (error) {
         console.log(error);
-        res.status(400)
     }
 }
 
@@ -24,11 +22,9 @@ const add = async (catalog) => {
 const getById = async (id) => {
     const catalog = await Category.findById(id)
     if(catalog) {
-        res.status(200)
         return catalog;
     }
     console.log(error);
-    res.status(400)
 }
 
 
@@ -39,11 +35,9 @@ const getById = async (id) => {
 const getByTitle = async (title) => {
     const catalog = await Category.findOne({title})
     if(catalog) {
-        res.status(200)
         return catalog;
     }
     console.log(error);
-    res.status(400)
 }
 
 /**
@@ -52,11 +46,9 @@ const getByTitle = async (title) => {
 const getAll = async () => {
     const catalogs = await Category.find()
     if(catalogs) {
-        res.status(200)
         return catalogs
     }
     console.log(error);
-    res.status(400)
 }
 
 /**
@@ -67,11 +59,9 @@ const getAll = async () => {
 const update = (id, catalog) => {
     try {
         const updatedCatalog = Category.findOneAndUpdate(id, catalog);
-        res.status(200)
         return updatedCatalog._id
     } catch (error) {
         console.log(error);
-        res.status(400)
     }
 }
 
@@ -81,10 +71,8 @@ const update = (id, catalog) => {
 const removeById = (id) => {
     try {
         Category.deleteOne(_id == id)
-        res.status(200)
     } catch (error) {
         console.log(error);
-        res.status(400)
     }
 }
 
