@@ -52,7 +52,7 @@ const getAll = async () => {
 
 /**
  * @param {*} id type String | id of dish that will be updated
- * @param {*} catalog type Dish | dish that will be updated
+ * @param {*} dish type Dish | dish that will be updated
  * @returns type String | id of updated dish
  */
 const update = (id, dish) => {
