@@ -31,7 +31,7 @@ const getByName = async (name)=>{
 };
 
 /**
- * @param {*} order | order object
+ * @param {*} order type object | order object
  * @returns | return new order
  */
 const add = async (order)=>{
@@ -46,9 +46,9 @@ const add = async (order)=>{
 }
 
 /**
- * 
- * @param {*} id 
- * @param {*} order 
+ *  @param {} id type String | the id of the order that will be change
+ *  @param {} restaurant type String | the id of the updated order
+ *  @returns | return updated order
  */
 const update = async (id, order)=>{
     try{
@@ -64,7 +64,7 @@ const update = async (id, order)=>{
 /**
  * @param {*} id type String | order id
  */
-const remove = async (id)=>{
+const removeById = async (id)=>{
     try{
         await Order.deleteOne({_id: id});
     }catch (error){
@@ -72,6 +72,6 @@ const remove = async (id)=>{
     }
 }
 
-const OrderApi = { getAll, getByName, add, update, remove};
+const OrderApi = { getAll, getByName, add, update, removeById};
 
 export default OrderApi;
