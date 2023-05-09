@@ -119,7 +119,7 @@ const update = async (id, restaurant)=>{
  */
 const removeById = async (id)=>{
     try{
-        Restaurant.deleteOne({_id: id});
+        await Restaurant.deleteOne({_id: id});
     }catch(error){
         console.log(error);
     }
