@@ -58,7 +58,7 @@ const getAll = async () => {
  */
 const update = (id, catalog) => {
     try {
-        const updatedCatalog = Category.findOneAndUpdate(id, catalog);
+        const updatedCatalog = Category.findByIdAndUpdate(id, catalog);
         return updatedCatalog._id
     } catch (error) {
         console.log(error);
