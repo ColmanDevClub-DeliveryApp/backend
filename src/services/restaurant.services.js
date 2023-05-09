@@ -48,7 +48,7 @@ const add = async (restaurant) => {
     try{
         const newRestaurant = await restaurant.save();
         if(newRestaurant){
-            return newRestaurant;
+            return newRestaurant._id;
         }
     }catch (error) {
         console.log(error);
@@ -56,9 +56,8 @@ const add = async (restaurant) => {
 }
 
 /**
- * 
- * @param {*} Parameters | restaurant id
- * @returns | return restaurant
+@param {*} id type String | the id of the restaurant that we want get from database
+@returns type Restaurant | the restaurant from the database
  */
 const getById = async (id) => {
     try{
@@ -72,8 +71,7 @@ const getById = async (id) => {
 }
 
 /**
- * 
- * @param {*} Parameters | restaurant name
+ * @param {*} Parameters type String | restaurant name
  * @returns | return restaurant
  */
 const getByName = async (name)=>{
@@ -88,7 +86,6 @@ const getByName = async (name)=>{
 }
 
 /**
- * 
  * @returns |  return all restaurants
  */
 const getAll = async ()=>{
@@ -103,15 +100,14 @@ const getAll = async ()=>{
 }
 
 /**
- * 
- * @param {*} Parameters | restaurant id, restaurant object
+ * @param {*} Parameters type String | restaurant id, restaurant object
  * @returns | return updated restaurant
  */
 const update = async (id, restaurant)=>{
     try{
         const updateRestaurant = await Restaurant.findByIdAndUpdate(id, restaurant);
         if(updateRestaurant){
-            return updateRestaurant;
+            return updateRestaurant._id;
         }
     }catch(error){
         console.log(error);
@@ -119,17 +115,16 @@ const update = async (id, restaurant)=>{
 }
 
 /**
- * 
- * @param {*} Parameters | restaurant id
+ * @param {*} Parameters type String | restaurant id
  */
-const remove = async (id)=>{
+const removeById = async (id)=>{
     try{
-        Restaurant.remove({_id: id});
+        Restaurant.deleteOne({_id: id});
     }catch(error){
         console.log(error);
     }
 }
 
-const RestaurantApi = {add, getById, getByName, getAll, update, remove};
+const RestaurantApi = {add, getById, getByName, getAll, update, removeById};
 
 export default RestaurantApi;
