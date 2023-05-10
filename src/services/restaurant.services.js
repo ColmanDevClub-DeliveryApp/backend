@@ -41,7 +41,7 @@ import { Restaurant } from "../models/restScheme.js"
 
 /**
  * 
- * @param {*} restaurant | restaurant object
+ * @param {*} restaurant type Restaurant | restaurant object
  * @returns | return new restaurant
  */
 const add = async (restaurant) => {
@@ -115,7 +115,7 @@ const update = async (id, restaurant)=>{
  */
 const removeById = async (id)=>{
     try{
-        Restaurant.deleteOne({_id: id});
+        await Restaurant.deleteOne({_id: id});
     }catch(error){
         console.log(error);
     }
