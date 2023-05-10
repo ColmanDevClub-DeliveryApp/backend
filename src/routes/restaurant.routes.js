@@ -32,12 +32,9 @@ router.get("/:name", async (req, res) => {
   }
 });
 
-/**
- * add a new restaurant.
- */
-router.post("/", async (req, res) => {
-  RestaurantController.addRestaurant(req);
-});
+
+router.post("/", RestaurantController.addRestaurant);
+
 
 /**
  * delete the specified restaurant.

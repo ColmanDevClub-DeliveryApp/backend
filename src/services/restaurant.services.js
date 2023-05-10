@@ -85,16 +85,12 @@ const getByName = async (name)=>{
     }
 }
 
-/**
- * @returns type Array | array of restaurants
- */
-const getAll = async ()=>{
-    try{
-        const restaurants = await Restaurant.find();
-        if(restaurants){
-            return restaurants;
-        }
-    }catch (error){
+
+const addRestaurant = async (restaurant) => {
+    try {
+        const newRest = await restaurant.save();
+        return newRest._id
+    } catch (error) {
         console.log(error);
     }
 }
