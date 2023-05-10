@@ -9,7 +9,7 @@ const router = express.Router();
  */
 router.get("/", async (req, res) => {
   const restaurants = await RestaurantApi.getAllRestaurant();
-  res.send(`${restaurants}`);
+  res.send(restaurants);
 });
 
 /**
@@ -32,7 +32,9 @@ router.get("/:name", async (req, res) => {
   }
 });
 
+
 router.post("/", RestaurantController.addRestaurant);
+
 
 /**
  * delete the specified restaurant.

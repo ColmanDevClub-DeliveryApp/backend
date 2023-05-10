@@ -40,6 +40,10 @@ async function addRestaurant(req, res, next){
    // add to catalog -> catalogAPI
 }
 
-const RestaurantController = {addRestaurant};
+function removeRestaurant(name){
+    RestaurantApi.removeRestaurant(name);
+}
+
+const RestaurantController = {addRestaurant, removeRestaurant};
 
 export default RestaurantController;
