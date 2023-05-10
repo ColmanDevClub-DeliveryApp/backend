@@ -18,5 +18,5 @@ const categoryScheme = mongoose.Schema({
         },
 });
 
-const CategoryScheme = mongoose.model("categories", categoryScheme);
-export {CategoryScheme, categoryScheme}
+const Category = mongoose.model("categories", categoryScheme);
+export {categoryScheme, Category}

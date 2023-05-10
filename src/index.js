@@ -23,10 +23,6 @@ app.use('/restaurants', restaurantRoutes);
 app.use('/category', categoryRoutes);
 app.use('*', notFoundRoutes);
 
-RestaurantApi.updateRestaurant("Tal", "McDonalds", "Fast food", "street", "city", "zip", 123456, "image");
-
-
-
 app.listen(PORT, ()=>{
     console.log(`Server listening on port ${PORT}`);
     mongoConnect();
