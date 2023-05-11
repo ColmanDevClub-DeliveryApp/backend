@@ -148,3 +148,16 @@ Content-Type: application/json
         {"title": "נאגטסים", "subtitle": "במיוחד לאלון", "dishes": []}
     ]
 }
+
+###
+PATCH  http://localhost:8080/dishes
+Content-Type: application/json
+
+{
+     "id": "645d3333587c7c21a288b829",
+     "dish":{
+          "name": "בורגררררר",
+          "price" : 50,
+          "image" : "123"
+     }
+}

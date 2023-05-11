@@ -6,7 +6,13 @@ import { Dish } from "../models/dishScheme.js"
  */
 const add = async (dish) => {
     try {
-        const DB_dish = await dish.save()
+        const newDish = new Dish({
+            name: dish.name.toLowerCase(),
+            description: dish.description,
+            price: dish.price,
+            image: dish.image,
+        })
+        const DB_dish = await newDish.save()
         if(DB_dish){
             return DB_dish._id
         }    
@@ -20,11 +26,14 @@ const add = async (dish) => {
  * @returns type Dish | dish from database
  */
 const getById = async (id) => {
-    const dish = await Dish.findById(id)
-    if(dish) {
-        return dish;
+    try{
+        const dish = await Dish.findById(id)
+        if(dish) {
+            return dish;
+        }
+    } catch (error) {
+        console.log(error);
     }
-    console.log(error);
 }
 
 /**
@@ -32,22 +41,28 @@ const getById = async (id) => {
  * @returns type Dish | dish from database
  */
 const getByName = async (name) => {
-    const dish = await Dish.findOne({name})
-    if(dish) {
-        return dish;
+    try{
+        const dish = await Dish.findOne({name})
+        if(dish) {
+            return dish;
+        }
+    } catch (error) {
+        console.log(error);
     }
-    console.log(error);
 }
 
 /**
  * @returns type Array | all dishes from database
  */
 const getAll = async () => {
-    const dishes = await Dish.find()
-    if(dishes) {
-        return dishes
+    try{
+        const dishes = await Dish.find()
+        if(dishes) {
+            return dishes
+        }
+    } catch (error) {
+        console.log(error);
     }
-    console.log(error);
 }
 
 /**
@@ -55,9 +70,9 @@ const getAll = async () => {
  * @param {*} dish type Dish | dish that will be updated
  * @returns type String | id of updated dish
  */
-const update = (id, dish) => {
+const update = async (id, dish) => {
     try {
-        const updatedDish = Dish.findByIdAndUpdate(id, dish);
+        const updatedDish = await Dish.findByIdAndUpdate(id, dish);
         return updatedDish._id
     } catch (error) {
         console.log(error);
@@ -67,9 +82,9 @@ const update = (id, dish) => {
 /**
  * @param {*} id type String | id of dish that will be deleted
  */
-const removeById = (id) => {
+const removeById = async (id) => {
     try {
-        Dish.deleteOne(_id == id)
+        await Dish.deleteOne({_id: id})
     } catch (error) {
         console.log(error);
     }
