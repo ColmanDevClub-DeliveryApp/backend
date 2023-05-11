@@ -1,52 +1,29 @@
 import { Restaurant } from "../models/restScheme.js"
 
-// const getRestaurantById = async (id)=> {
-//     return await Restaurant.findById(id);
-// }
-
-// const getAllRestaurant = async ()=> {
-//     return await Restaurant.find();
-// }
-// const getRestaurantByName = async (name)=> {
-//     return await Restaurant.findOne({name}).populate('category.dishes');
-// }
-
-// const addRestaurant = async (restaurant) => {
-//     try {
-//         const newRest = await restaurant.save();   
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
-
-// const removeRestaurant = async (name)=> {
-//     await Restaurant.deleteOne({name});
-// }
-
-// const updateRestaurant = async (name, newName=name, desc, street, city, zip, phone, image) =>{
-//     const address = {street, city, zip};
-//     const openingHours = [{day: "a", hours: "1200-1600"},{day: "b", hours: "1200-1600"}]
-//     const category = [{title: "category", subtitle: "category"}]
-//     await Restaurant.findOneAndUpdate({name}, {name:newName, 
-//         description: desc, 
-//         address, 
-//         phone, 
-//         image, 
-//         category, 
-//         openingHours})
-// }
-
-// const RestaurantApi = {getAllRestaurant, getRestaurantById, getRestaurantByName, addRestaurant, removeRestaurant, updateRestaurant};
-
 
 /**
- * 
  * @param {*} restaurant type Restaurant | restaurant object
  * @returns | return new restaurant
  */
 const add = async (restaurant) => {
     try{
-        const newRestaurant = await restaurant.save();
+        const rest = new Restaurant({
+            name: restaurant.name.toLowerCase(),
+            shownName: restaurant.shownName,
+            description: restaurant.description, 
+            address: {
+                street: restaurant.street, 
+                city: restaurant.city , 
+                zip: restaurant.zip
+            },
+            phone: restaurant.phone,
+            openingHours: restaurant.openingHours, 
+            image: restaurant.image,
+            deliveryTime: restaurant.deliveryTime,
+            deliveryCost: restaurant.deliveryCost,
+            category: restaurant.category
+       })
+        const newRestaurant = await rest.save();
         if(newRestaurant){
             return newRestaurant._id;
         }
@@ -85,14 +62,11 @@ const getByName = async (name)=>{
     }
 }
 
-
-const addRestaurant = async (restaurant) => {
-    try {
-        const newRest = await restaurant.save();
-        return newRest._id
-    } catch (error) {
-        console.log(error);
-    }
+/**
+ * @returns | return all restaurants
+ */
+const getAll = async ()=> {
+    return await Restaurant.find();
 }
 
 /**
@@ -121,6 +95,6 @@ const removeById = async (id)=>{
     }
 }
 
-const RestaurantApi = {add, getById, getByName, getAll, update, removeById};
+const RestaurantApi = {add, getById, getByName, update, removeById, getAll};
 
 export default RestaurantApi;
