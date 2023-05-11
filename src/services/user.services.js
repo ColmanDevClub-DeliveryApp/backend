@@ -48,7 +48,7 @@ const add = async (user) => {
  */
 const removeById = (id) => {
     try{
-        User.deleteOne(_id==id);
+        User.deleteOne(_id: id);
     } catch(err){
         console.log(err);
     }
