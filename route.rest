@@ -89,7 +89,9 @@ POST http://localhost:8080/restaurants
 Content-Type: application/json
 
 {
-     "name": "Shay",
+     "catalog_id": "6453512ce20699ccb3724de4",
+     "restaurant" : {
+     "name": "Shay10",
      "city": "Shay",
      "street": "Shay",
      "zip": "Shay",
@@ -100,6 +102,7 @@ Content-Type: application/json
           "day": "Sunday","hours":"12:00-12:00"
      }],
      "catalog": [{}]
+     }
 
 
 }
