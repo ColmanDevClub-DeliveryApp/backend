@@ -4,11 +4,14 @@ import {User} from '../models/userScheme'
  * @returns type Array | all users in database
  */
 const getAll = async () => {
-    const users = await User.find();
-    if(users){
-        return users;
+    try{
+        const users = await User.find();
+        if(users){
+            return users;
+        }
+    } catch(err){
+        console.log("error in getAll Users.");
     }
-    console.log("No users found in getAll");
 }
 
 /**
@@ -33,7 +36,20 @@ const getByEmail = async (email) => {
  */
 const add = async (user) => {
     try{
-        const DB_user = await user.save();
+        const newUser = new User({
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            password: user.password,
+            profilePicture: user.profilePicture,
+            phoneNumber: user.phoneNumber,
+            address: user.address,
+            role: user.role,
+            orders: user.orders,
+            numOfOrders: user.numOfOrders,
+            creditCardNumber: user.creditCardNumber,
+        });
+        const DB_user = await newUser.save();
         if(DB_user){
             return DB_user._id;
         }
