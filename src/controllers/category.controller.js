@@ -32,11 +32,18 @@ async function removeRestaurantFromCatalog(req, res, next) {
     }
 }
 
-function addCatalog(req, res, next) {
-    const {title, subtitle} = req.body;
-    const restaurant = []
-    const catalog = new Category({title, subtitle, restaurant})
-    CategoryApi.addCatalog(catalog)
+/**
+ * @param {*} req has 'catalog' field and the value of this field has title and subtitle fields
+ */
+const addCatalog = async (req, res, next)=> {
+    const {catalog} = req.body;
+    const catalog_id = await CategoryApi.add(catalog)
+    if (!catalog_id) {
+        res.status(500).send("Something went wrong")
+    }
+    else {
+        res.status(200).send(catalog_id)
+    }
 }
 
 const CategoryController = {addRestaurantToCatalog, addCatalog, removeRestaurantFromCatalog};
