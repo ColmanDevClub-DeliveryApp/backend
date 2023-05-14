@@ -58,6 +58,14 @@ const getCatalogByTitle = async (req, res, next) => {
     res.send(catalog);
 }
 
-const CategoryController = {addCatalog, removeRestaurantFromCatalog, updateCatalog, getAllCategories, getCatalogByTitle};
+/**
+ * @param {*} req has 'id' field
+ */
+const removeCatalog = async (req, res, next) => {
+    const {id} = req.body;
+    await CategoryApi.removeById(id);
+}
+
+const CategoryController = {addCatalog, removeRestaurantFromCatalog, updateCatalog, getAllCategories, getCatalogByTitle, removeCatalog};
 
 export default CategoryController;
