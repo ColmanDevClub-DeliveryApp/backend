@@ -1,34 +1,17 @@
 import { Category } from "../models/categoryScheme.js";
 import CategoryApi from "../services/category.services.js";
 
-async function addRestaurantToCatalog(req, res, next){
-    const { title, id } = req.body;
-    const catalog = await CategoryApi.getCategoryByTitle(title)
-    console.log(catalog);
+/**
+ * @param {*} req has 'catalog_id' and 'restaurant_id' fields
+ */
+const removeRestaurantFromCatalog = async (req, res, next)=> {
+    const {catalog_id, restaurant_id} = req.body;
+    const catalog = await CategoryApi.getById(catalog_id)
     if(catalog){
-        if(catalog.restaurants.filter(item=> item == id).length > 0){
-            console.log('rest already in this catalog');
-            return
-        }
-        catalog.restaurants.push(id)
-        CategoryApi.updateCategory(catalog);
+        catalog.restaurants = catalog.restaurants.filter(item=> item._id != restaurant_id)
+        CategoryApi.update(catalog._id, catalog);
     }else {
-        console.log('Dont find any catalog by this name');
-        //todo: return error message to frontend
-    }
-}
-
-async function removeRestaurantFromCatalog(req, res, next) {
-    const { title, id } = req.body;
-    const catalog = await CategoryApi.getCategoryByTitle(title)
-    if(catalog){
-        catalog.restaurants = catalog.restaurants.filter(item=> item!=id)
-        CategoryApi.updateCategory(catalog);
-        res.status(200).send(`Restaurant ${id} removed from catalog ${title}`)
-    }
-    else{
-        //todo: return error message to frontend
-        res.status(400).send(`Dont find any catalog by this name`)
+        res.status(405).send("Catalog not found")
     }
 }
 
@@ -46,6 +29,21 @@ const addCatalog = async (req, res, next)=> {
     }
 }
 
-const CategoryController = {addRestaurantToCatalog, addCatalog, removeRestaurantFromCatalog};
+/**
+ * @param {*} req has 'catalog_id' and 'catalog' fields
+ */
+const updateCatalog = async (req, res, next)=> {
+    const {catalog_id, catalog} = req.body;
+    const DB_catalog = await CategoryApi.getById(catalog_id)
+    if(DB_catalog){
+        DB_catalog.title = catalog.title
+        DB_catalog.subtitle = catalog.subtitle
+        CategoryApi.update(DB_catalog._id, DB_catalog);
+    }else {
+        res.status(405).send("Catalog not found")
+    }
+}
+
+const CategoryController = {addCatalog, removeRestaurantFromCatalog, updateCatalog};
 
 export default CategoryController;
