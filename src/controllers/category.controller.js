@@ -38,7 +38,7 @@ const updateCatalog = async (req, res, next)=> {
     if(DB_catalog){
         DB_catalog.title = catalog.title
         DB_catalog.subtitle = catalog.subtitle
-        CategoryApi.update(DB_catalog._id, DB_catalog);
+        CategoryApi.update(catalog_id, DB_catalog);
     }else {
         res.status(405).send("Catalog not found")
     }

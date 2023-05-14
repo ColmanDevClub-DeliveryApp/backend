@@ -39,12 +39,13 @@ const getById = async (id) => {
  */
 const getByTitle = async (title) => {
     try{
-        const catalog = await Category.findOne({title})
+        console.log(title);
+        const catalog = await Category.findOne({title: title})
         if(catalog) {
             return catalog;
         }
     } catch (error) {
-        console.log(error);
+        console.log("Error in getByTitle");
     }
 }
 
@@ -67,10 +68,10 @@ const getAll = async () => {
  * @param {*} catalog type Category | new catalog
  * @returns type String | id of updated catalog
  */
-const update = (id, catalog) => {
+const update = async (id, catalog) => {
     try {
-        const updatedCatalog = Category.findByIdAndUpdate(id, catalog);
-        return id
+        const updatedCatalog = await Category.findByIdAndUpdate(id, catalog);
+        return updatedCatalog._id
     } catch (error) {
         console.log(error);
     }
@@ -79,9 +80,9 @@ const update = (id, catalog) => {
 /**
  * @param {*} id type String | id of catalog that will be deleted
  */
-const removeById = (id) => {
+const removeById = async(id) => {
     try {
-        Category.deleteOne({_id: id})
+        await Category.findByIdAndDelete(id);
     } catch (error) {
         console.log(error);
     }
