@@ -1,0 +1,46 @@
+###
+
+GET http://localhost:8080/category
+
+###
+GET http://localhost:8080/category/בשרים3
+
+###
+POST http://localhost:8080/category
+Content-Type: application/json
+
+{   
+    "catalog": {
+        "title": "בשרים3",
+        "subtitle": "כל הבשרים שתרצו"
+    }
+}
+
+###
+DELETE http://localhost:8080/category/
+Content-Type: application/json
+
+{   
+    "id": "6460f25e25bf685bb24ad90a"
+}
+
+###
+PUT http://localhost:8080/category/
+Content-Type: application/json
+
+{   
+    "catalog_id": "6453512ce20699ccb3724de4",
+    "catalog": {
+        "title": "בשרים",
+        "subtitle": "כל הבשרים שתרצו"
+    }
+}
+
+###
+DELETE http://localhost:8080/category/remove-rest
+Content-Type: application/json
+
+{   
+    "catalog_id": "6453512ce20699ccb3724de4",
+    "restaurant_id": "6460f32625bf685bb24ad920"
+}
