@@ -44,6 +44,20 @@ const updateCatalog = async (req, res, next)=> {
     }
 }
 
-const CategoryController = {addCatalog, removeRestaurantFromCatalog, updateCatalog};
+const getAllCategories = async (req, res, next) => {
+    const catalogs = await CategoryApi.getAll();
+    res.send(catalogs);
+}
+
+/**
+ * @param {*} req has 'title' field
+ */
+const getCatalogByTitle = async (req, res, next) => {
+    const { title } = req.params;
+    const catalog = await CategoryApi.getByTitle(title);
+    res.send(catalog);
+}
+
+const CategoryController = {addCatalog, removeRestaurantFromCatalog, updateCatalog, getAllCategories, getCatalogByTitle};
 
 export default CategoryController;
