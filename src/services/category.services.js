@@ -22,11 +22,14 @@ const add = async (catalog) => {
  * @returns type Category | catalog from database
  */
 const getById = async (id) => {
-    const catalog = await Category.findById(id)
-    if(catalog) {
-        return catalog;
+    try{
+        const catalog = await Category.findById(id)
+        if(catalog) {
+            return catalog;
+        }
+    } catch (error) {
+        console.log(error);
     }
-    console.log(error);
 }
 
 
@@ -35,22 +38,28 @@ const getById = async (id) => {
  * @returns type Category | catalog from database
  */
 const getByTitle = async (title) => {
-    const catalog = await Category.findOne({title})
-    if(catalog) {
-        return catalog;
+    try{
+        const catalog = await Category.findOne({title})
+        if(catalog) {
+            return catalog;
+        }
+    } catch (error) {
+        console.log(error);
     }
-    console.log(error);
 }
 
 /**
  * @returns type Array | all catalogs from database
  */
 const getAll = async () => {
-    const catalogs = await Category.find()
-    if(catalogs) {
-        return catalogs
+    try{
+        const catalogs = await Category.find()
+        if(catalogs) {
+            return catalogs
+        }
+    } catch (error) {
+        console.log(error);
     }
-    console.log(error);
 }
 
 /**
@@ -61,7 +70,7 @@ const getAll = async () => {
 const update = (id, catalog) => {
     try {
         const updatedCatalog = Category.findByIdAndUpdate(id, catalog);
-        return updatedCatalog._id
+        return id
     } catch (error) {
         console.log(error);
     }
@@ -72,7 +81,7 @@ const update = (id, catalog) => {
  */
 const removeById = (id) => {
     try {
-        Category.deleteOne(_id == id)
+        Category.deleteOne({_id: id})
     } catch (error) {
         console.log(error);
     }

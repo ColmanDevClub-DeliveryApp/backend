@@ -1,57 +1,74 @@
 import {User} from '../models/userScheme'
 
-const getAllUsers = async () => {
-    return await User.find();
+/**
+ * @returns type Array | all users in database
+ */
+const getAll = async () => {
+    const users = await User.find();
+    if(users){
+        return users;
+    }
+    console.log("No users found in getAll");
 }
 
-const getUserById = async (id) => {
+/**
+ * @param {*} id type String
+ * @returns User object or null
+ */
+const getById = async (id) => {
     return await User.findById(id);
 }
 
-const getUserByEmail = async (email) => {
+/**
+ * @param {*} id type String
+ * @returns User object or null
+ */
+const getByEmail = async (email) => {
     return await User.findOne({email});
 }
 
-const addUser = async (firstName, lastName, email, password, profilePic, phoneNumber, address, role, orders, numOfOrders, creditCardNumber) =>{
+/**
+ * @param {*} user type User | user that will be added to database
+ * @returns type String | the id of the added user
+ */
+const add = async (user) => {
     try{
-        const user= new User({
-            firstName,
-            lastName,
-            email,
-            password,
-            profilePic,
-            phoneNumber,
-            address,
-            role,
-            orders,
-            numOfOrders,
-            creditCardNumber
-        });
+        const DB_user = await user.save();
+        if(DB_user){
+            return DB_user._id;
+        }
+    } catch(err){
+        console.log(err);
+    }
+    
+}
+
+/**
+ * @param {*} id type String | the id of the user that will be removed
+ */
+const removeById = (id) => {
+    try{
+        User.deleteOne({_id: id});
+    } catch(err){
+        console.log(err);
     }
 }
 
-const removeUser = async (email) => {
-    await User.deleteOne({email});
+/**
+ * @param {*} id type String | the id of the user that will be changed
+ * @param {*} user type User | new user that will be updated
+ * @returns type String | the id of the updated user
+ */
+const update = (id, user) =>{
+    try{
+        const updatedUser = User.findByIdAndUpdate(id, user);
+        return updatedUser._id;
+    } catch(err){
+        console.log(err);
+    }
+    
 }
 
-const updateUser = async (firstName, lastName, email, newEmail, password, profilePic, phoneNumber, address, role, orders, numOfOrders, creditCardNumber) =>{
-    await User.findOneAndUpdate({email},
-        {
-            firstName,
-            lastName,
-            email:newEmail,
-            password,
-            profilePic,
-            phoneNumber,
-            address,
-            role,
-            orders,
-            numOfOrders,
-            creditCardNumber
-
-        })
-}
-
-const UserApi = {getAllUsers, getUserById, getUserByEmail, addUser, removeUser, updateUser};
+const UserApi = {getAll, getById, getByEmail, add, removeById, update};
 
 export default UserApi;

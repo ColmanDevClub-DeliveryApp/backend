@@ -1,37 +1,77 @@
 import { Order } from '../models/orderSchema.js';
 
-const getAllOrders = async ()=>{
-    return await Order.find();
+/**
+ * 
+ * @returns type Array | array of orders
+ */
+const getAll = async ()=>{
+    try{
+        const orders = await Order.find();
+        if(orders){
+            return orders;
+        }
+    }catch (error){
+        console.log(error);
+    }
 }
 
-const getOrderByName = async (name)=>{
-    return await Order.findOne({name});
+/**
+ * @param {*} name type String | order name
+ * @returns | return order
+ */
+const getByName = async (name)=>{
+    try{
+        const order = await Order.findOne({name})
+        if(order){
+            return order;
+        }
+    }catch (error){
+        console.log(error);
+    }
 };
 
-const addOrder = async (deliveryPrice, dishes, user, restaurant)=>{
-    const order = new Order({
-        deliveryPrice,
-        dishes,
-        user,
-        restaurant
-    });
+/**
+ * @param {*} order type object | order object
+ * @returns | return new order
+ */
+const add = async (order)=>{
     try {
         const newOrder = await order.save();
+        if(newOrder){
+            return newOrder._id;
+        }
     } catch (error) {
         console.log(error);
     }
 }
 
-const updateOrder = async (deliveryPrice, dishes, user, restaurant)=>{
-    await Order.findOneAndUpdated ({user},
-        {
-            deliveryPrice,
-            dishes,
-            user,
-            restaurant
-        });
+/**
+ *  @param {} id type String | the id of the order that will be change
+ *  @param {} restaurant type String | the id of the updated order
+ *  @returns | return updated order
+ */
+const update = async (id, order)=>{
+    try{
+        const updateOrder = await Order.findByIdAndUpdate(id, order);
+        if(updateOrder){
+            return updateOrder._id;
+        }
+    }catch (error){
+        console.log(error);
+    }
 }
 
-const OrderApi = {getAllOrders, getOrderByName, addOrder, updateOrder};
+/**
+ * @param {*} id type String | order id
+ */
+const removeById = async (id)=>{
+    try{
+        await Order.deleteOne({_id: id});
+    }catch (error){
+        console.log(error);
+    }
+}
+
+const OrderApi = { getAll, getByName, add, update, removeById};
 
 export default OrderApi;
