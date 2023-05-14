@@ -6,7 +6,9 @@ import {Category} from "../models/categoryScheme.js";
  */
 const add = async (catalog) => {
     try {
-        const DB_catalog = await catalog.save()
+        catalog.restaurants = []
+        const newCatalog = new Category({title: catalog.title, subtitle: catalog.subtitle, restaurants: catalog.restaurants})
+        const DB_catalog = await newCatalog.save()
         if(DB_catalog){
             return DB_catalog._id
         }    
