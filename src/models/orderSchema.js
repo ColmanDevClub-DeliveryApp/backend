@@ -3,13 +3,13 @@ import mongoose from 'mongoose';
 const orderSchema = mongoose.Schema({
     deliveryPrice: Number,
     dishes: [{
-        ref: 'dish',
+        type: [{type: mongoose.Schema.Types.ObjectId, ref: 'dish'}]
     }],
     user:{
-        ref: 'user',
+        type: [{type: mongoose.Schema.Types.ObjectId, ref: 'user'}]
     },
     restaurant:{
-        ref: 'restaurant',
+        type: [{type: mongoose.Schema.Types.ObjectId, ref: 'restaurant'}]
     }
 });
 

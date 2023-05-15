@@ -5,10 +5,16 @@ import { Category } from "../models/categoryScheme.js";
  * @returns type String | id of added catalog
  */
 const add = async (catalog) => {
-  try {
-    const DB_catalog = await catalog.save();
-    if (DB_catalog) {
-      return DB_catalog._id;
+
+    try {
+        catalog.restaurants = []
+        const newCatalog = new Category({title: catalog.title, subtitle: catalog.subtitle, restaurants: catalog.restaurants})
+        const DB_catalog = await newCatalog.save()
+        if(DB_catalog){
+            return DB_catalog._id
+        }    
+    } catch (error) {
+        console.log(error);
     }
   } catch (error) {
     console.log(error);
@@ -35,10 +41,15 @@ const getById = async (id) => {
  * @returns type Category | catalog from database
  */
 const getByTitle = async (title) => {
-  try {
-    const catalog = await Category.findOne({ title });
-    if (catalog) {
-      return catalog;
+
+    try{
+        console.log(title);
+        const catalog = await Category.findOne({title: title})
+        if(catalog) {
+            return catalog;
+        }
+    } catch (error) {
+        console.log("Error in getByTitle");
     }
   } catch (error) {
     console.log(error);
@@ -64,25 +75,27 @@ const getAll = async () => {
  * @param {*} catalog type Category | new catalog
  * @returns type String | id of updated catalog
  */
-const update = (id, catalog) => {
-  try {
-    const updatedCatalog = Category.findByIdAndUpdate(id, catalog);
-    return id;
-  } catch (error) {
-    console.log(error);
-  }
-};
+
+const update = async (id, catalog) => {
+    try {
+        const updatedCatalog = await Category.findByIdAndUpdate(id, catalog);
+        return updatedCatalog._id
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 /**
  * @param {*} id type String | id of catalog that will be deleted
  */
-const removeById = (id) => {
-  try {
-    Category.deleteOne({ _id: id });
-  } catch (error) {
-    console.log(error);
-  }
-};
+
+const removeById = async(id) => {
+    try {
+        await Category.findByIdAndDelete(id);
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 // const CategoryApi = {getAllCategories, getCategoryByTitle, updateCategory, addCatalog, getCategoryById};
 const CategoryApi = { add, getAll, getById, getByTitle, removeById, update };
