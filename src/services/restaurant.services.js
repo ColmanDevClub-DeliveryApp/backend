@@ -53,7 +53,7 @@ const getById = async (id) => {
  */
 const getByName = async (name)=>{
     try{
-        const restaurant = await Restaurant.findOne({name})
+        const restaurant = await Restaurant.findOne({name}).populate("category.dishes");
         if(restaurant){
             return restaurant;
         }
