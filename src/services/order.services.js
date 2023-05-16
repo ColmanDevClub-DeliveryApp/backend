@@ -36,9 +36,15 @@ const getByName = async (name)=>{
  */
 const add = async (order)=>{
     try {
-        const newOrder = await order.save();
-        if(newOrder){
-            return newOrder._id;
+        const newOrder = new Order({
+            deliveryPrice: order.deliveryPrice,
+            dishes: order.dishes,
+            user: order.user,
+            restaurant: order.restaurant,
+        });
+        const DB_Order = await newOrder.save();
+        if(DB_Order){
+            return DB_Order._id;
         }
     } catch (error) {
         console.log(error);

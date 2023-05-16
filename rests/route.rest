@@ -1,0 +1,153 @@
+GET http://localhost:8080/restaurants/mcdonalds
+
+###
+
+POST http://localhost:8080/restaurants
+Content-Type: application/json
+
+{
+    "catalog_id": "6453512ce20699ccb3724de4",
+    "restaurant": {
+          "name": "Idan",
+          "city": "Idan",
+          "street": "Idan",
+          "zip": "Idan",
+          "phone": 1234,
+          "description": "Idan",
+          "image": "Idan" 
+     }
+}
+
+###
+
+DELETE http://localhost:8080/restaurants
+Content-Type: application/json
+
+{
+     "name": "Yuval"
+}
+
+###
+
+PATCH  http://localhost:8080/restaurants
+Content-Type: application/json
+
+{
+     "name": "Yuval",
+     "city": "idan",
+    "street": "idan",
+        "zip": "idan",
+          "phone": 1234,
+             "description": "idan",
+                   "image": "idan" 
+}
+
+###
+
+POST http://localhost:8080/signup/
+Content-Type: application/json
+
+{
+     "firstName": "Alon",
+     "lastName": "Quzzaa",
+     "email": "alonquzzaa@gmail.com",
+     "password": "yuvalShtok",
+     "phone": "123456789"
+}
+
+###
+
+POST http://localhost:8080/signin/
+Content-Type: application/json
+
+{
+     "email": "aaaaa@gmail.com",
+     "password": "aaaaa"
+}
+
+###
+
+POST http://localhost:8080/signup
+Content-Type: application/json
+
+{
+     "firstName": "bar",
+     "lastName": "bar",
+     "email": "bar@gmail.com",
+     "password": "bar",
+     "phone": "123456"
+}
+
+###
+POST http://localhost:8080/signin/
+Content-Type: application/json
+
+{
+     "email": "bar@gmail.com",
+     "password": "bar"
+}
+
+###
+POST http://localhost:8080/restaurants
+Content-Type: application/json
+
+{
+     "name": "Shay",
+     "city": "Shay",
+     "street": "Shay",
+     "zip": "Shay",
+     "phone": 123456,
+     "description": "Shay",
+     "image": "bar",
+     "openingHours": [{
+          "day": "Sunday","hours":"12:00-12:00"
+     }],
+     "catalog": [{}]
+
+
+}
+
+###
+DELETE http://localhost:8080/restaurants
+Content-Type: application/json
+
+{
+     "name": "bar"
+}
+
+
+###
+POST http://localhost:8080/restaurants
+Content-Type: application/json
+
+{    
+     "catalog_id": "6453512ce20699ccb3724de4",
+     "restaurant": {
+          "name": "McDonalds-test8",
+          "shownName": "מקדונלד'ס",
+          "street": "אבן גבירול 20", 
+          "city": "תל אביב",
+          "zip": "123456", 
+          "phone": 123456789,
+          "openingHours": [{
+               "day": "א'-ה'","hours":"12:00-12:00"
+          },
+          {
+               "day": "ו'","hours":"12:00-12:00"
+          },
+          {
+               "day": "ש'","hours":"12:00-12:00"
+          }],
+          "image": "https://images-ext-2.discordapp.net/external/-z9-zqkDTPPv9-Lbm5tjzzWypgHtjIBxqP8ODWrcbGo/https/www.denia.com/wp-content/uploads/2015/10/McDonalds.jpg",
+          "deliveryTime": 15,
+          "deliveryCost": 10,
+          "category" : [
+             {"title": "ארוחות", "subtitle": "", "dishes": []},
+             {"title": "מוצרים בודדים", "subtitle": "", "dishes": []},
+             {"title": "קינוחים", "subtitle": "", "dishes": []},
+             {"title": "שתייה קלה", "subtitle": "", "dishes": []},
+             {"title": "תוספות", "subtitle": "", "dishes": []},
+             {"title": "נאגטסים", "subtitle": "במיוחד לאלון", "dishes": []}
+          ]
+    }
+}
