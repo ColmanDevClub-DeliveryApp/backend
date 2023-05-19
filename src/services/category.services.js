@@ -41,15 +41,16 @@ const getById = async (id) => {
  * @returns type Category | catalog from database
  */
 const getByTitle = async (title) => {
-  try {
-    console.log(title);
-    const catalog = await Category.findOne({ title: title });
-    if (catalog) {
-      return catalog;
+
+    try{
+        console.log(title);
+        const catalog = await Category.findOne({title: title})
+        if(catalog) {
+            return catalog;
+        }
+    } catch (error) {
+        console.log("Error in getByTitle");
     }
-  } catch (error) {
-    console.log("Error in getByTitle");
-  }
 };
 
 /**
