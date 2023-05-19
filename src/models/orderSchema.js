@@ -4,7 +4,15 @@ const orderSchema = mongoose.Schema({
   deliveryPrice: Number,
   dishes: [
     {
-      type: [{ type: mongoose.Schema.Types.ObjectId, ref: "dish" }],
+      type: [
+        {
+          id: { type: mongoose.Schema.Types.ObjectId, ref: "dish" },
+          quantity: {
+            type: Number,
+            default: 1,
+          },
+        },
+      ],
     },
   ],
   user: {
