@@ -1,0 +1,18 @@
+###
+POST http://localhost:8080/order
+Content-Type: application/json
+
+{
+    "order":{
+        "deliveryPrice": 15,
+        "dishes": [],
+        "user" :"646139405be7c30ede9264cb",
+        "restaurant" : "64515a9072e6bfe71dde7419"
+    }
+}
+
+###
+GET http://localhost:8080/order/
+
+###
+DELETE http://localhost:8080/order/64673b23fb5ae3496d590489
