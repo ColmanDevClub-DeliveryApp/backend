@@ -5,17 +5,20 @@ import { Category } from "../models/categoryScheme.js";
  * @returns type String | id of added catalog
  */
 const add = async (catalog) => {
-
-    try {
-        catalog.restaurants = []
-        const newCatalog = new Category({title: catalog.title, subtitle: catalog.subtitle, restaurants: catalog.restaurants})
-        const DB_catalog = await newCatalog.save()
-        if(DB_catalog){
-            return DB_catalog._id
-        }    
-    } catch (error) {
-        console.log(error);
+  try {
+    catalog.restaurants = [];
+    const newCatalog = new Category({
+      title: catalog.title,
+      subtitle: catalog.subtitle,
+      restaurants: catalog.restaurants,
+    });
+    const DB_catalog = await newCatalog.save();
+    if (DB_catalog) {
+      return DB_catalog._id;
     }
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 /**
@@ -71,25 +74,24 @@ const getAll = async () => {
  */
 
 const update = async (id, catalog) => {
-    try {
-        const updatedCatalog = await Category.findByIdAndUpdate(id, catalog);
-        return updatedCatalog._id
-    } catch (error) {
-        console.log(error);
-    }
-}
+  try {
+    const updatedCatalog = await Category.findByIdAndUpdate(id, catalog);
+    return updatedCatalog._id;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 /**
  * @param {*} id type String | id of catalog that will be deleted
  */
-
-const removeById = async(id) => {
-    try {
-        await Category.findByIdAndDelete(id);
-    } catch (error) {
-        console.log(error);
-    }
-}
+const removeById = async (id) => {
+  try {
+    await Category.findByIdAndDelete(id);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // const CategoryApi = {getAllCategories, getCategoryByTitle, updateCategory, addCatalog, getCategoryById};
 const CategoryApi = { add, getAll, getById, getByTitle, removeById, update };
