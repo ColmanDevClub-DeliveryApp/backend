@@ -71,6 +71,7 @@ const getAll = async () => {
  * @param {*} catalog type Category | new catalog
  * @returns type String | id of updated catalog
  */
+
 const update = async (id, catalog) => {
   try {
     const updatedCatalog = await Category.findByIdAndUpdate(id, catalog);

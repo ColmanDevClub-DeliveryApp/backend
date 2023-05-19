@@ -123,7 +123,7 @@ Content-Type: application/json
 {    
      "catalog_id": "6453512ce20699ccb3724de4",
      "restaurant" :{
-          "name": "McDonalds123",
+          "name": "McDonalds1231542352352345",
           "shownName": "מקדונלד'ס",
           "street": "אבן גבירול 20", 
           "city": "תל אביב",
